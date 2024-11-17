@@ -7,13 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
 @Repository
 public interface CarShowroomRepository extends JpaRepository<CarShowroomEntity , UUID> {
 
-    @Query("SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
-    List<CarShowroomDTO> findAllActiveCarShowrooms();
+    @Query("SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.uuid, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
+    List<CarShowroomDTO> findAllActiveTrueCarShowrooms();
+
+    Optional<CarShowroomEntity> findByActiveTrueAndCommercialRegistrationNumber(String id);
 
 }

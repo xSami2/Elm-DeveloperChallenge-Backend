@@ -21,7 +21,7 @@ public class CarShowroomQueryServiceImpl {
 
 
     public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowrooms() {
-        List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllActiveCarShowrooms();
+        List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllActiveTrueCarShowrooms();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(

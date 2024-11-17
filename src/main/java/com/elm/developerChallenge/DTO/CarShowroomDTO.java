@@ -39,7 +39,8 @@ public class CarShowroomDTO {
     private List<CarEntity> carList = new ArrayList<>();
 
 
-    public CarShowroomDTO(String name, String commercialRegistrationNumber, String contactNumber) {
+    public CarShowroomDTO(UUID uuid ,String name, String commercialRegistrationNumber, String contactNumber) {
+        this.uuid = uuid;
         this.name = name;
         this.commercialRegistrationNumber = commercialRegistrationNumber;
         this.contactNumber = contactNumber;
