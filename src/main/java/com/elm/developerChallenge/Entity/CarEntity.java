@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Car {
+public class CarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

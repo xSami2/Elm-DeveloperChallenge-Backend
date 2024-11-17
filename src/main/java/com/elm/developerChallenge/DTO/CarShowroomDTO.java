@@ -1,13 +1,11 @@
 package com.elm.developerChallenge.DTO;
 
 
-import com.elm.developerChallenge.Entity.Car;
-import jakarta.persistence.*;
+import com.elm.developerChallenge.Entity.CarEntity;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,30 +16,34 @@ public class CarShowroomDTO {
 
     private UUID uuid;
 
-    @NotNull(message = "Name is required.")
-    @NotEmpty(message = "Name cannot be empty.")
+
+
+    @NotEmpty(message = "Name cannot be empty or null.")
     @Size(max = 100, message = "Name must be at most 100 characters long.")
     private String name;
 
-    @NotNull(message = "Commercial Registration Number is required.")
-    @NotEmpty(message = "Commercial Registration Number cannot be empty.")
-    @Pattern(regexp = "^[0-9]{10}$", message = "Commercial registration number must be between 10 and 15 digits")
+    @NotEmpty(message = "Commercial Registration Number cannot be empty or null.")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Commercial Registration Number must be exactly 10 digits.")
     private String commercialRegistrationNumber;
 
-    @NotNull(message = "Manager Name is required.")
     @Size(max = 100, message = "Manager Name must be at most 100 characters long.")
     private String managerName;
 
-    @NotNull(message = "Contact Number is required.")
-    @NotEmpty(message = "Contact Number cannot be empty.")
+    @NotEmpty(message = "Contact Number is required and cannot be empty.")
     @Pattern(regexp = "^[0-9]{10,15}$", message = "Commercial registration number must be between 10 and 15 digits")
     private String contactNumber;
 
-    @NotNull(message = "Address is required.")
     @Size(max = 255, message = "Address must be at most 255 characters long.")
     private String address;
 
-    private List<Car> carList = new ArrayList<>();
+    private List<CarEntity> carList = new ArrayList<>();
+
+
+    public CarShowroomDTO(String name, String commercialRegistrationNumber, String contactNumber) {
+        this.name = name;
+        this.commercialRegistrationNumber = commercialRegistrationNumber;
+        this.contactNumber = contactNumber;
+    }
 
 
 }

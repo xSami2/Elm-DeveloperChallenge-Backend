@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Component
 public class CarShowroomMapper {
@@ -19,4 +22,12 @@ public class CarShowroomMapper {
     public CarShowroomDTO convertToCarShowroomDTO(CarShowroomEntity carShowroomEntity) {
         return mapper.convertValue(carShowroomEntity, CarShowroomDTO.class);
     }
+
+    public List<CarShowroomDTO> convertToCarShowroomDTOList(List<CarShowroomEntity> carShowroomEntityList) {
+       return carShowroomEntityList.stream().map(
+                carShowroomEntity    -> mapper.convertValue( carShowroomEntity , CarShowroomDTO.class)
+        ).collect(Collectors.toList());
+    }
+
+
 }

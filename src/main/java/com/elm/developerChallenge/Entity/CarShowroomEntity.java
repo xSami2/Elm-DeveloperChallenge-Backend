@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@Table(name = "car_showroom")
 @Entity
 public class CarShowroomEntity {
 
@@ -34,7 +35,7 @@ public class CarShowroomEntity {
     private String address;
 
     @OneToMany(mappedBy = "carShowroom" , cascade = CascadeType.ALL)
-    private List<Car> carList = new ArrayList<>();
+    private List<CarEntity> carEntityList = new ArrayList<>();
 
     private Instant created_at;
 
