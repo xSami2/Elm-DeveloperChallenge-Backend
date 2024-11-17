@@ -3,6 +3,7 @@ package com.elm.developerChallenge.Service.Command;
 
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.CarShowroomDTO;
+import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Entity.CarShowroomEntity;
 import com.elm.developerChallenge.Mapper.CarShowroomMapper;
 import com.elm.developerChallenge.Repository.CarShowroomRepository;
@@ -24,11 +25,11 @@ public class CarShowroomCommandServiceImpl {
 
     public ResponseEntity<API_Responses<CarShowroomDTO>> createCarShowroom(CarShowroomDTO carShowroomDTO){
         CarShowroomEntity carShowroomEntity = carShowroomMapper.convertToCarShowroomEntity(carShowroomDTO);
-        CarShowroomEntity createdCarShowroomEntity = carShowroomRepository.save(carShowroomEntity);
-        CarShowroomDTO createdCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(createdCarShowroomEntity);
+        CarShowroomEntity savedCarShowroomEntity = carShowroomRepository.save(carShowroomEntity);
+        CarShowroomDTO savedCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(savedCarShowroomEntity);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new API_Responses<CarShowroomDTO>(201 , "Created" , createdCarShowroomDTO));
+                .body(new API_Responses<>(201 , "Created" , savedCarShowroomDTO));
     }
 
 }
