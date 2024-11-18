@@ -13,8 +13,8 @@ import java.util.UUID;
 public class CarEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String uuid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     private String maker;
 

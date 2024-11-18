@@ -3,6 +3,8 @@ package com.elm.developerChallenge.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.DialectOverride;
+import org.hibernate.annotations.Where;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -11,14 +13,15 @@ import java.util.UUID;
 
 @Data
 @Table(name = "car_showroom")
+@Where(clause = "active = true")
 @Entity
 public class CarShowroomEntity {
 
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String uuid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     private String name;
 
@@ -41,7 +44,7 @@ public class CarShowroomEntity {
 
     private Instant updated_at;
 
-    private boolean active;
+    private boolean active = true;
 
 
     @PrePersist

@@ -14,7 +14,7 @@ import java.util.UUID;
 public class CarShowroomDTO {
 
 
-    private String uuid;
+    private String id;
 
 
 
@@ -39,8 +39,8 @@ public class CarShowroomDTO {
     private List<CarEntity> carList = new ArrayList<>();
 
 
-    public CarShowroomDTO(String uuid ,String name, String commercialRegistrationNumber, String contactNumber) {
-        this.uuid = uuid;
+    public CarShowroomDTO(String id ,String name, String commercialRegistrationNumber, String contactNumber) {
+        this.id = id;
         this.name = name;
         this.commercialRegistrationNumber = commercialRegistrationNumber;
         this.contactNumber = contactNumber;

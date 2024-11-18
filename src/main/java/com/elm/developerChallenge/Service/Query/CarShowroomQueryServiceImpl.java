@@ -6,6 +6,7 @@ import com.elm.developerChallenge.Entity.CarShowroomEntity;
 import com.elm.developerChallenge.Mapper.CarShowroomMapper;
 import com.elm.developerChallenge.Repository.CarShowroomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,14 +22,14 @@ public class CarShowroomQueryServiceImpl {
   private final CarShowroomMapper carShowroomMapper;
 
   public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowrooms() {
-    List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllActiveTrueCarShowrooms();
+    List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllCarShowrooms();
     return ResponseEntity.status(HttpStatus.OK)
         .body(new API_Responses<>(200, "Get All Car Showrooms", carShowroomDTOList));
   }
 
   public ResponseEntity<API_Responses<CarShowroomDTO>> getCarShowroom(String uuid) {
     Optional<CarShowroomEntity> optionalCarShowroomEntity =
-        carShowroomRepository.findCarShowroomEntityByIdAndActiveTrue(uuid);
+        carShowroomRepository.findCarShowroomEntityById(uuid);
 
     if (optionalCarShowroomEntity.isPresent()) {
       CarShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
@@ -38,5 +39,15 @@ public class CarShowroomQueryServiceImpl {
     }
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new API_Responses<>(404, "Could not find Car Showroom with id : " + uuid, null));
+  }
+
+  public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllActiveCarShowroomsSorted(String sortBy , String sortDirection) {
+    Sort.Direction direction = Sort.Direction.fromString(sortDirection);
+    Sort sort = Sort.by(direction, sortBy);
+    List<CarShowroomEntity> carShowroomEntityList = carShowroomRepository.findAll(sort);
+    List<CarShowroomDTO> carShowroomDTOList = carShowroomMapper.convertToCarShowroomDTOList(carShowroomEntityList);
+    return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(new API_Responses<>(200, "Get All Car Showroom Sorted by " + sortBy + " And " + sortDirection, carShowroomDTOList));
   }
 }
