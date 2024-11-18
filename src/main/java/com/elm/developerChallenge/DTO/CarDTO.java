@@ -13,7 +13,7 @@ import java.util.UUID;
 public class CarDTO {
 
 
-    private UUID uuid;
+    private String uuid;
 
     private String maker;
 
