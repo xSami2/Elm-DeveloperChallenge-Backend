@@ -25,36 +25,59 @@ public class CarShowroomCommandServiceImpl {
     private final CarShowroomMapper carShowroomMapper;
 
 
-    public ResponseEntity<API_Responses<CarShowroomDTO>> createCarShowroom(CarShowroomDTO carShowroomDTO) {
+    public ResponseEntity<API_Responses<CarShowroomDTO>> saveCarShowroom(CarShowroomDTO carShowroomDTO) {
+        Optional<CarShowroomEntity> existingCommercialRegistrationNumber = carShowroomRepository
+                .findCarShowroomEntityById(carShowroomDTO.getCommercialRegistrationNumber());
 
-        if (carShowroomDTO.getUuid() != null && carShowroomRepository.existsById(UUID.fromString(carShowroomDTO.getUuid()))) {
-
-            // Update Logic
-            CarShowroomEntity carShowroomEntity = carShowroomMapper.convertToCarShowroomEntity(carShowroomDTO);
-            CarShowroomEntity updatedCarShowroomEntity = carShowroomRepository.save(carShowroomEntity);
-            CarShowroomDTO updatedCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(updatedCarShowroomEntity);
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new API_Responses<>(200, "Updated", updatedCarShowroomDTO));
-        }
-
-        // Check if the Commercial Registration Number is already taken
-        Optional<CarShowroomEntity> existingCarShowroom = carShowroomRepository
-                .findCarShowroomEntityByIdAndActiveTrue(carShowroomDTO.getCommercialRegistrationNumber());
-
-        if (existingCarShowroom.isPresent()) {
-            // If the Commercial Registration Number is taken, return an error
+        if (existingCommercialRegistrationNumber.isPresent()) {
+            CarShowroomEntity existingEntity = existingCommercialRegistrationNumber.get();
+            if (existingEntity.getId().equals(carShowroomDTO.getId())) {
+                return handleUpdate(carShowroomDTO);
+            }
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new API_Responses<>(400, "Commercial Registration Number Already Taken", null));
         }
 
-        // Create Logic: Convert DTO to entity and save it
+        if (carShowroomDTO.getId() != null) {
+            return handleUpdate(carShowroomDTO);
+        }
+
+        return handleCreate(carShowroomDTO);
+    }
+
+    public ResponseEntity<API_Responses<CarShowroomDTO>> deleteCarShowroom(String carShowroomId) {
+        Optional<CarShowroomEntity> optionalCarShowroomEntity  = carShowroomRepository.findCarShowroomEntityById(carShowroomId);
+
+        if (optionalCarShowroomEntity.isPresent()) {
+            CarShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
+            carShowroomEntity.setActive(false);
+            carShowroomRepository.save(carShowroomEntity);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new API_Responses<>(200, "Car Showroom Deleted", null));
+        }
+
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new API_Responses<>(404, "Could not found Car Showroom With ID : " + carShowroomId, null));
+    }
+
+    private ResponseEntity<API_Responses<CarShowroomDTO>> handleUpdate(CarShowroomDTO carShowroomDTO) {
         CarShowroomEntity carShowroomEntity = carShowroomMapper.convertToCarShowroomEntity(carShowroomDTO);
         CarShowroomEntity savedCarShowroomEntity = carShowroomRepository.save(carShowroomEntity);
-        CarShowroomDTO    savedCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(savedCarShowroomEntity);
+        CarShowroomDTO savedCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(savedCarShowroomEntity);
+        return ResponseEntity.status(HttpStatus.OK)  // Status 200 for updates
+                .body(new API_Responses<>(200, "Updated", savedCarShowroomDTO));  // Fixed typo here
+    }
 
-
-        return ResponseEntity.status(HttpStatus.CREATED)
+    private ResponseEntity<API_Responses<CarShowroomDTO>> handleCreate(CarShowroomDTO carShowroomDTO) {
+        CarShowroomEntity carShowroomEntity = carShowroomMapper.convertToCarShowroomEntity(carShowroomDTO);
+        CarShowroomEntity savedCarShowroomEntity = carShowroomRepository.save(carShowroomEntity);
+        CarShowroomDTO savedCarShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(savedCarShowroomEntity);
+        return ResponseEntity.status(HttpStatus.CREATED)  // Status 201 for creation
                 .body(new API_Responses<>(201, "Created", savedCarShowroomDTO));
     }
+
 
 }
