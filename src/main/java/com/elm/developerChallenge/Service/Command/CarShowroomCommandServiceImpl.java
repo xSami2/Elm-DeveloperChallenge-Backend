@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class CarShowroomCommandServiceImpl {
 
     public ResponseEntity<API_Responses<CarShowroomDTO>> createCarShowroom(CarShowroomDTO carShowroomDTO) {
 
-        if (carShowroomDTO.getUuid() != null && carShowroomRepository.existsById(carShowroomDTO.getUuid())) {
+        if (carShowroomDTO.getUuid() != null && carShowroomRepository.existsById(UUID.fromString(carShowroomDTO.getUuid()))) {
 
             // Update Logic
             CarShowroomEntity carShowroomEntity = carShowroomMapper.convertToCarShowroomEntity(carShowroomDTO);
@@ -38,7 +39,7 @@ public class CarShowroomCommandServiceImpl {
 
         // Check if the Commercial Registration Number is already taken
         Optional<CarShowroomEntity> existingCarShowroom = carShowroomRepository
-                .findByActiveTrueAndCommercialRegistrationNumber(carShowroomDTO.getCommercialRegistrationNumber());
+                .findCarShowroomEntityByIdAndActiveTrue(carShowroomDTO.getCommercialRegistrationNumber());
 
         if (existingCarShowroom.isPresent()) {
             // If the Commercial Registration Number is taken, return an error

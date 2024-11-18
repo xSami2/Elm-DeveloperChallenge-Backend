@@ -17,6 +17,7 @@ public interface CarShowroomRepository extends JpaRepository<CarShowroomEntity ,
     @Query("SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.uuid, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
     List<CarShowroomDTO> findAllActiveTrueCarShowrooms();
 
-    Optional<CarShowroomEntity> findByActiveTrueAndCommercialRegistrationNumber(String id);
+    Optional<CarShowroomEntity> findCarShowroomEntityByIdAndActiveTrue(String id);
+
 
 }

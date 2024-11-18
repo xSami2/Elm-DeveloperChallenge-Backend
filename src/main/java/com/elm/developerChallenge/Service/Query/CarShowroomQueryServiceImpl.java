@@ -11,22 +11,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class CarShowroomQueryServiceImpl {
 
-    private final CarShowroomRepository carShowroomRepository;
-    private final CarShowroomMapper carShowroomMapper;
+  private final CarShowroomRepository carShowroomRepository;
+  private final CarShowroomMapper carShowroomMapper;
 
+  public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowrooms() {
+    List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllActiveTrueCarShowrooms();
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(new API_Responses<>(200, "Get All Car Showrooms", carShowroomDTOList));
+  }
 
-    public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowrooms() {
-        List<CarShowroomDTO> carShowroomDTOList = carShowroomRepository.findAllActiveTrueCarShowrooms();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(
-                        new API_Responses<>(
-                        200 , "Get All Car Showrooms", carShowroomDTOList)
-                );
+  public ResponseEntity<API_Responses<CarShowroomDTO>> getCarShowroom(String uuid) {
+    Optional<CarShowroomEntity> optionalCarShowroomEntity =
+        carShowroomRepository.findCarShowroomEntityByIdAndActiveTrue(uuid);
+
+    if (optionalCarShowroomEntity.isPresent()) {
+      CarShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
+      CarShowroomDTO carShowroomDTO = carShowroomMapper.convertToCarShowroomDTO(carShowroomEntity);
+      return ResponseEntity.status(HttpStatus.OK)
+          .body(new API_Responses<>(200, "Get Car Showroom", carShowroomDTO));
     }
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(new API_Responses<>(404, "Could not find Car Showroom with id : " + uuid, null));
+  }
 }
