@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Exception;
 
 import com.elm.developerChallenge.DTO.API_Responses;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,5 +27,11 @@ public class GlobalExceptionHandler {
 
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+    System.out.println(ex.getMessage());
+    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

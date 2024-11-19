@@ -23,6 +23,11 @@ public class CarShowroomQueryController {
         return carShowroomQueryService.getAllCarShowrooms();
     }
 
+    @GetMapping("/names")
+    public ResponseEntity<API_Responses<List<String>>> getAllCarShowroomsNames() {
+        return carShowroomQueryService.getAllCarShowroomsNames();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<API_Responses<CarShowroomDTO>> getCarShowroom(@PathVariable String id) {
      return carShowroomQueryService.getCarShowroom(id);
