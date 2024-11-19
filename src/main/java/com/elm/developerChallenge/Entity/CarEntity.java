@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,17 +17,19 @@ public class CarEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column(name = "vehicle_identification_number")
+    private String vehicleIdentificationNumber;
+
     private String maker;
 
     private String model;
 
     @Column(name = "model_year")
-    private Integer modelYear;
+    private String modelYear;
 
     private double price;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name = "car_showroom_id")
     private CarShowroomEntity carShowroom;
 

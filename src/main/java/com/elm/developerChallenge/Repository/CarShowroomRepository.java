@@ -11,17 +11,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
 @Repository
-public interface CarShowroomRepository extends JpaRepository<CarShowroomEntity , String> {
+public interface CarShowroomRepository extends JpaRepository<CarShowroomEntity, String> {
 
-    @Query("SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
-    List<CarShowroomDTO> findAllCarShowrooms();
+  @Query(
+      "SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
+  List<CarShowroomDTO> findAllCarShowrooms();
 
-   @Query("select name from CarShowroomEntity ")
-   List<String> findAllCarShowroomNames();
+  @Query("select name from CarShowroomEntity ")
+  List<String> findAllCarShowroomNames();
 
-    Optional<CarShowroomEntity> findCarShowroomEntityById(String id);
-
+  Optional<CarShowroomEntity> findCarShowroomEntityById(String id);
 
 }
