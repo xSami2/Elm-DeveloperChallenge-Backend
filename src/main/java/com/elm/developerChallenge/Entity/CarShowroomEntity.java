@@ -1,6 +1,9 @@
 package com.elm.developerChallenge.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DialectOverride;
@@ -38,6 +41,7 @@ public class CarShowroomEntity {
     private String address;
 
     @OneToMany(mappedBy = "carShowroom" , cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<CarEntity> carEntityList = new ArrayList<>();
 
     private Instant created_at;

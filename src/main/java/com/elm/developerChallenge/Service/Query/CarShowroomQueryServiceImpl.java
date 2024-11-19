@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +28,11 @@ public class CarShowroomQueryServiceImpl {
         .body(new API_Responses<>(200, "Get All Car Showrooms", carShowroomDTOList));
   }
 
-  public ResponseEntity<API_Responses<List<String>>> getAllCarShowroomsNames() {
-    List<String> carShowroomNames = carShowroomRepository.findAllCarShowroomNames();
+  public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowroomsNames() {
+    List<CarShowroomEntity> carShowroomEntities = carShowroomRepository.findAll();
+    List<CarShowroomDTO> carShowroomDTOList = carShowroomMapper.convertToCarShowroomDTOList(carShowroomEntities);
     return ResponseEntity.status(HttpStatus.OK)
-            .body(new API_Responses<>(200, "Get All Car Showrooms Names", carShowroomNames));
+            .body(new API_Responses<>(200, "Get All Car Showrooms Names", carShowroomDTOList));
   }
 
   public ResponseEntity<API_Responses<CarShowroomDTO>> getCarShowroom(String uuid) {

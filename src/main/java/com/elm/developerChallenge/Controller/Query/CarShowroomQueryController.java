@@ -24,7 +24,7 @@ public class CarShowroomQueryController {
     }
 
     @GetMapping("/names")
-    public ResponseEntity<API_Responses<List<String>>> getAllCarShowroomsNames() {
+    public ResponseEntity<API_Responses<List<CarShowroomDTO>>> getAllCarShowroomsNames() {
         return carShowroomQueryService.getAllCarShowroomsNames();
     }
 
