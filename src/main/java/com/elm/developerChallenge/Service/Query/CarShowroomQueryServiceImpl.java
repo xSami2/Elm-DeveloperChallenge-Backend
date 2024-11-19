@@ -27,6 +27,12 @@ public class CarShowroomQueryServiceImpl {
         .body(new API_Responses<>(200, "Get All Car Showrooms", carShowroomDTOList));
   }
 
+  public ResponseEntity<API_Responses<List<String>>> getAllCarShowroomsNames() {
+    List<String> carShowroomNames = carShowroomRepository.findAllCarShowroomNames();
+    return ResponseEntity.status(HttpStatus.OK)
+            .body(new API_Responses<>(200, "Get All Car Showrooms Names", carShowroomNames));
+  }
+
   public ResponseEntity<API_Responses<CarShowroomDTO>> getCarShowroom(String uuid) {
     Optional<CarShowroomEntity> optionalCarShowroomEntity =
         carShowroomRepository.findCarShowroomEntityById(uuid);
