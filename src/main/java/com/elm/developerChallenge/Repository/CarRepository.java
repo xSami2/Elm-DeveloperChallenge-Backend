@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Repository;
 
 import com.elm.developerChallenge.Entity.CarEntity;
+import com.elm.developerChallenge.Entity.CarShowroomEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ public interface CarRepository extends JpaRepository<CarEntity , String> {
 
     @Query("SELECT c FROM CarEntity c JOIN FETCH c.carShowroom")
     List<CarEntity> findAllWithShowroom();
+
+    List<CarEntity> findAllByCarShowroom_Id(String carShowroomId);
 }

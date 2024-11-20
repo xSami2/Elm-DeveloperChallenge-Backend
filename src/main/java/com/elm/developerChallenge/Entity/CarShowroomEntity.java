@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.DialectOverride;
 import org.hibernate.annotations.Where;
 
@@ -14,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Setter
+@Getter
 @Table(name = "car_showroom")
 @Where(clause = "active = true")
 @Entity
