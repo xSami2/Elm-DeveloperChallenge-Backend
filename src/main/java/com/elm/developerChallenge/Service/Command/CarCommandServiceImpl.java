@@ -39,7 +39,7 @@ public class CarCommandServiceImpl {
            return ResponseEntity
                    .status(HttpStatus.OK)
                    .body(
-                           new API_Responses<>( 200 , "save Car" ,savedCarDTO )
+                           new API_Responses<>( 201 , "save Car" ,savedCarDTO )
                    );
        }
 
