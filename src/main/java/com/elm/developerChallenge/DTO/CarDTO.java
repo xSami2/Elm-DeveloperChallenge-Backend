@@ -31,7 +31,7 @@ public class CarDTO {
     private String modelYear;
 
     @NotNull(message = "Price cannot be null.")
-    private double price;
+    private Double price;
 
 
     private CarShowroomDTO carShowroom;

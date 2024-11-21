@@ -26,7 +26,6 @@ public class CarCommandServiceImpl {
 
 
    public ResponseEntity<API_Responses<CarDTO>> saveCar(CarDTO carDTO) {
-       System.out.println(carDTO);
        String carShowroomId = carDTO.getCarShowroom().getId();
        Optional<CarShowroomEntity> optionalCarShowroomEntity = carShowroomRepository.findCarShowroomEntityById(carShowroomId);
 

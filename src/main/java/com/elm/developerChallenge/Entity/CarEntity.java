@@ -31,7 +31,7 @@ public class CarEntity {
     @Column(name = "model_year")
     private String modelYear;
 
-    private double price;
+    private Double price;
 
     @ManyToOne()
     @JoinColumn(name = "car_showroom_id")
