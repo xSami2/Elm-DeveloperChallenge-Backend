@@ -29,7 +29,7 @@ public class CarSpec {
                 predicate = builder.and(predicate, builder.equal(root.get("modelYear"), criteria.getModelYear()));
             }
             if (criteria.getPrice() != null) {
-                predicate = builder.and(predicate, builder.greaterThanOrEqualTo(root.get("price"), criteria.getPrice()));
+                predicate = builder.and(predicate, builder.equal(root.get("price"), criteria.getPrice()));
             }
 
             if (criteria.getCarShowroomId() != null) {
