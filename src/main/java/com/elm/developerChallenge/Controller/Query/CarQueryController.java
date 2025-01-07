@@ -41,7 +41,7 @@ public class CarQueryController {
                 @RequestParam(required = false) String model,
                 @RequestParam(required = false) String modelYear,
                 @RequestParam(required = false) String carShowroom,
-                @RequestParam(required = false) Double price  // Optional filter for minimum price
+                @RequestParam(required = false) Double price
         ) {
            return carQueryService.getCars(maker,model,modelYear,carShowroom,price);
         }
