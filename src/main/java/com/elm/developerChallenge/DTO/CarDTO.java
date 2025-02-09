@@ -1,7 +1,6 @@
 package com.elm.developerChallenge.DTO;
 
 
-import com.elm.developerChallenge.Entity.CarShowroomEntity;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -34,7 +33,7 @@ public class CarDTO {
     private Double price;
 
 
-    private CarShowroomDTO carShowroom;
+    private ShowroomDTO carShowroom;
 
 
 

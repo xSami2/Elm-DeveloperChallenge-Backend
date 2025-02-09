@@ -1,27 +1,24 @@
 package com.elm.developerChallenge.Entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.DialectOverride;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.*;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Setter
 @Getter
 @Table(name = "car_showroom")
-@Where(clause = "active = true")
+@SQLRestriction("active <>'true'")
 @Entity
-public class CarShowroomEntity {
+public class ShowroomEntity {
 
 
 
@@ -47,22 +44,13 @@ public class CarShowroomEntity {
     @JsonIgnore
     private List<CarEntity> carEntityList = new ArrayList<>();
 
+    @CreationTimestamp
     private Instant created_at;
 
+    @UpdateTimestamp
     private Instant updated_at;
 
     private boolean active = true;
 
-
-    @PrePersist
-    protected void onCreate() {
-        this.created_at = Instant.now();
-        this.active = true;
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updated_at = Instant.now();
-    }
 
 }

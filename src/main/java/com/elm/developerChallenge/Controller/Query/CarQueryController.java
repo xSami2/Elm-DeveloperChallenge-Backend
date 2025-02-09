@@ -3,8 +3,6 @@ package com.elm.developerChallenge.Controller.Query;
 
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.CarDTO;
-import com.elm.developerChallenge.DTO.CarShowroomDTO;
-import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Service.Query.CarQueryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

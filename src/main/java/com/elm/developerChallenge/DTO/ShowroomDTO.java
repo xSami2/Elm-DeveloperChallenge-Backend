@@ -3,15 +3,13 @@ package com.elm.developerChallenge.DTO;
 
 import com.elm.developerChallenge.Entity.CarEntity;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
-public class CarShowroomDTO {
+public class ShowroomDTO {
 
 
     private String id;
@@ -39,7 +37,7 @@ public class CarShowroomDTO {
     private List<CarEntity> carList = new ArrayList<>();
 
 
-    public CarShowroomDTO(String id ,String name, String commercialRegistrationNumber, String contactNumber) {
+    public ShowroomDTO(String id , String name, String commercialRegistrationNumber, String contactNumber) {
         this.id = id;
         this.name = name;
         this.commercialRegistrationNumber = commercialRegistrationNumber;

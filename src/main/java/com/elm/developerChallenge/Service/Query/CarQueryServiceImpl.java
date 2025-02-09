@@ -3,11 +3,9 @@ package com.elm.developerChallenge.Service.Query;
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.CarDTO;
 import com.elm.developerChallenge.DTO.CarFilter;
-import com.elm.developerChallenge.DTO.CarShowroomDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
-import com.elm.developerChallenge.Entity.CarShowroomEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
-import com.elm.developerChallenge.Mapper.CarShowroomMapper;
+import com.elm.developerChallenge.Mapper.ShowroomMapper;
 import com.elm.developerChallenge.Repository.CarRepository;
 import com.elm.developerChallenge.Spec.CarSpec;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,7 +24,7 @@ import java.util.List;
 public class CarQueryServiceImpl {
 
   private final CarRepository carRepository;
-  private final CarShowroomMapper carShowroomMapper;
+  private final ShowroomMapper carShowroomMapper;
   private final CarMapper carMapper;
 
   public ResponseEntity<API_Responses<Page>> getAllCar(int page, int size) {
