@@ -1,61 +1,40 @@
+# Project Tasks
 
-# Elm Developer Challenge 
+## 📌 Refactoring & Code Cleanup
+- Improve code readability and maintainability.
+- Remove unused code and dependencies.
+- Apply best practices for clean code (SOLID principles, DRY, etc.).
+- Optimize package structure for better organization.
 
-## Overview
+## 📌 Implement Liquibase
+- Add Liquibase to manage database migrations.
+- Create initial changelog files for schema versioning.
+- Ensure Liquibase runs automatically during application startup.
+- Document migration process in the README.
 
-This is an Assignment from Elm Company. Creating a full stack application using the latest version for both springboot and anguler, the application is required to be Creating a Car showroom with pagination and sorting, as well as a page for managing cars and creating them and linking them to the Car showroom, and the ability to dynamically filiter
+## 📌 Create DTOs for Request & Response
+- Define Data Transfer Objects (DTOs) for API requests and responses.
+- Implement conversion between entities and DTOs using `ModelMapper` or `MapStruct`.
+- Ensure DTOs include only necessary fields for security and efficiency.
 
-## Architecture
+## 📌 Implement Caching for Fast Retrieval
+- Identify frequently accessed data for caching.
+- Use Spring Cache (`@Cacheable`, `@CachePut`, `@CacheEvict`).
+- Configure an appropriate caching provider (e.g., Redis, Caffeine, Ehcache).
 
-The application is divided into two main components:
+## 📌 Implement Cache Strategy (if needed)
+- Choose between write-through, write-back, or write-around strategies.
+- Optimize cache expiration and eviction policies.
+- Monitor cache performance and adjust configurations as needed.
 
-> Backend : 
- - SpringBoot
- - Hibernate
- - Lombok
-> Frontend
-- Anguler
-- DaisyUI
- - sweetAlert
- - Axios
+## 📌 Implement Spring Security with JWT
+- Set up authentication and authorization using JWT.
+- Implement user login, registration, and token generation.
+- Secure API endpoints with role-based access control (RBAC).
+- Configure token expiration and refresh logic.
+- Implement necessary filters for JWT validation.
 
- ## Database Schema
-
-![Database-Schema](https://github.com/user-attachments/assets/20a7ef80-3d27-4870-9f3c-5b7f4d84b2d8)
-
-## Installation
-
-
-```git
-git clone https://github.com/xSami2/developerChallenageElm-Frontend.git
-
-git clone https://github.com/xSami2/Elm-DeveloperChallenge-Backend.git
-```
-
-- Navgaite to Front-end application
-
-```cmd
- cd developerChallenageElm-Frontend
-```
-
-- Install All Depdency 
-
-```cmd
- npm i
-```
-- Now Run the Applction
-
-```cmd
- ng serve
-```
-
-- Open the  Backend with your IDEA and run the Applction 
-
-
-
-
-
-
-now access http://localhost:4200
-
-
+## ✅ Next Steps
+- Test all implemented features.
+- Write unit and integration tests.
+- Update API documentation (Swagger/OpenAPI).
