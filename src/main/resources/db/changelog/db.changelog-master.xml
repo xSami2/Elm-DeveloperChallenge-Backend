@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- ChangeSet for ShowroomEntity -->
+    <changeSet id="1" author="developer">
+        <createTable tableName="showroom">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="commercial_registration_number" type="varchar(10)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="manager_name" type="varchar(100)"/>
+            <column name="contact_number" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+            <column name="active" type="boolean" defaultValue="true"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet for CarEntity -->
+    <changeSet id="2" author="developer">
+        <createTable tableName="car">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="vehicle_identification_number" type="varchar(255)"/>
+            <column name="maker" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="model_year" type="varchar(255)"/>
+            <column name="price" type="decimal(19, 2)"/>
+            <column name="showroom_id" type="uuid"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+            <column name="active" type="boolean" defaultValue="true"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="car"
+                baseColumnNames="showroom_id"
+                referencedTableName="showroom"
+                referencedColumnNames="id"
+                constraintName="fk_car_showroom"/>
+    </changeSet>
+
+</databaseChangeLog>
