@@ -1,8 +1,9 @@
 # Project Tasks
 
-- [ ] 📌 Refactoring & Code Cleanup
-- [x] 📌 Convert from H2 Database to PostgreSQL
+- [x] 📌 Convert from H2 Database to PostgresSQL
 - [x] 📌 Use Docker for Dependency Management
+- [ ] 📌 Refactoring & Code Cleanup
+- [ ] 📌 Refactoring Queries
 - [ ] 📌 Implement Liquibase
 - [ ] 📌 Create DTOs for Request & Response
 - [ ] 📌 Implement Caching for Fast Retrieval

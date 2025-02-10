@@ -36,7 +36,7 @@ public class CarQueryServiceImpl {
 
   public ResponseEntity<API_Responses<List<CarDTO>>> getAllCarByShowroom(String carShowroomId) {
     System.out.println(carShowroomId);
-    List<CarEntity> carEntityList = carRepository.findAllByCarShowroom_Id(carShowroomId);
+    List<CarEntity> carEntityList = carRepository.findAllByShowroom_Id(carShowroomId);
     System.out.println(carEntityList);
     List<CarDTO> carDTOList = carMapper.convertToCarDTOList(carEntityList);
     return ResponseEntity.status(HttpStatus.OK)

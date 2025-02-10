@@ -33,8 +33,8 @@ public class CarEntity {
     private Double price;
 
     @ManyToOne()
-    @JoinColumn(name = "car_showroom_id")
-    private ShowroomEntity carShowroom;
+    @JoinColumn(name = "showroom_id")
+    private ShowroomEntity Showroom;
 
     @CreationTimestamp
     private Instant created_at;

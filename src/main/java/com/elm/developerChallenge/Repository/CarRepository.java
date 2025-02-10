@@ -15,10 +15,11 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, String> , JpaSpecificationExecutor<CarEntity> {
 
-    @Query("SELECT c  FROM CarEntity c JOIN FETCH c.carShowroom")
+    @Query("SELECT c FROM CarEntity c JOIN FETCH c.Showroom")
     Page<CarEntity> findAllWithShowroom(Pageable pageable);
 
-    List<CarEntity> findAllByCarShowroom_Id(String carShowroomId);
+
+    List<CarEntity> findAllByShowroom_Id(String ShowroomId);
 
 
 

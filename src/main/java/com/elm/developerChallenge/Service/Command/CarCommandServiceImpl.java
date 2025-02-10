@@ -39,7 +39,7 @@ public class CarCommandServiceImpl {
 
        ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
        CarEntity carEntity = carMapper.convertToCarEntity(carDTO);
-       carEntity.setCarShowroom(carShowroomEntity);
+       carEntity.setShowroom(carShowroomEntity);
        CarEntity savedCarEntity = carRepository.save(carEntity);
        CarDTO    savedCarDTO = carMapper.convertToCarDTO(savedCarEntity);
        return ResponseEntity
