@@ -15,12 +15,13 @@ import java.util.Optional;
 public interface ShowroomRepository extends JpaRepository<ShowroomEntity, String> {
 
   @Query(
-      "SELECT new com.elm.developerChallenge.DTO.CarShowroomDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM CarShowroomEntity cs WHERE cs.active = true")
+      "SELECT new com.elm.developerChallenge.DTO.ShowroomDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM ShowroomEntity cs WHERE cs.active = true")
   Page<ShowroomDTO> findAllCarShowrooms(Pageable pageable);
 
-  @Query("select name from CarShowroomEntity ")
+  @Query("select name from ShowroomEntity ")
   List<String> findAllCarShowroomNames();
 
   Optional<ShowroomEntity> findShowroomEntityByCommercialRegistrationNumber(String id);
+  Optional<ShowroomEntity> findShowroomEntityById(String id);
 
 }

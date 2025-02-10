@@ -45,7 +45,7 @@ public class ShowroomQueryServiceImpl {
 
   public ResponseEntity<API_Responses<ShowroomDTO>> getCarShowroom(String uuid) {
     Optional<ShowroomEntity> optionalCarShowroomEntity =
-        ShowroomRepository.findCarShowroomEntityById(uuid);
+        ShowroomRepository.findShowroomEntityById(uuid);
 
     if (optionalCarShowroomEntity.isPresent()) {
       ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();

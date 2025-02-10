@@ -5,7 +5,6 @@ import com.elm.developerChallenge.DTO.CarDTO;
 import com.elm.developerChallenge.DTO.CarFilter;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
-import com.elm.developerChallenge.Mapper.ShowroomMapper;
 import com.elm.developerChallenge.Repository.CarRepository;
 import com.elm.developerChallenge.Spec.CarSpec;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ import java.util.List;
 public class CarQueryServiceImpl {
 
   private final CarRepository carRepository;
-  private final ShowroomMapper carShowroomMapper;
   private final CarMapper carMapper;
 
   public ResponseEntity<API_Responses<Page>> getAllCar(int page, int size) {

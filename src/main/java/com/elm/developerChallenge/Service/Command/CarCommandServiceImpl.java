@@ -19,34 +19,35 @@ import java.util.Optional;
 @Service
 public class CarCommandServiceImpl {
 
-    private final ShowroomRepository carShowroomRepository;
+    private final ShowroomRepository showroomRepository;
     private final CarRepository carRepository;
     private final CarMapper carMapper;
 
 
    public ResponseEntity<API_Responses<CarDTO>> saveCar(CarDTO carDTO) {
        String carShowroomId = carDTO.getCarShowroom().getId();
-       Optional<ShowroomEntity> optionalCarShowroomEntity = carShowroomRepository.findCarShowroomEntityById(carShowroomId);
+       Optional<ShowroomEntity> optionalCarShowroomEntity = showroomRepository.findShowroomEntityById(carShowroomId);
 
-       if (optionalCarShowroomEntity.isPresent()) {
-           ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
-           CarEntity carEntity = carMapper.convertToCarEntity(carDTO);
-           carEntity.setCarShowroom(carShowroomEntity);
-           CarEntity savedCarEntity = carRepository.save(carEntity);
-           CarDTO    savedCarDTO = carMapper.convertToCarDTO(savedCarEntity);
+       if (optionalCarShowroomEntity.isEmpty()) {
            return ResponseEntity
-                   .status(HttpStatus.OK)
+                   .status(HttpStatus.BAD_REQUEST)
                    .body(
-                           new API_Responses<>( 201 , "save Car" ,savedCarDTO )
+                           new API_Responses<>( 400 , "Could not save Car" ,null )
                    );
        }
 
 
+       ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
+       CarEntity carEntity = carMapper.convertToCarEntity(carDTO);
+       carEntity.setCarShowroom(carShowroomEntity);
+       CarEntity savedCarEntity = carRepository.save(carEntity);
+       CarDTO    savedCarDTO = carMapper.convertToCarDTO(savedCarEntity);
        return ResponseEntity
-               .status(HttpStatus.BAD_REQUEST)
+               .status(HttpStatus.OK)
                .body(
-                       new API_Responses<>( 400 , "Could not save Car" ,null )
+                       new API_Responses<>( 201 , "save Car" ,savedCarDTO )
                );
+
     }
 
 }

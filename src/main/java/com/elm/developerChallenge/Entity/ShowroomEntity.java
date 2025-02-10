@@ -15,7 +15,7 @@ import java.util.List;
 
 @Setter
 @Getter
-@Table(name = "car_showroom")
+@Table(name = "showroom")
 @SQLRestriction("active <>'true'")
 @Entity
 public class ShowroomEntity {
