@@ -34,7 +34,7 @@ public class CarEntity {
 
     @ManyToOne()
     @JoinColumn(name = "showroom_id")
-    private ShowroomEntity Showroom;
+    private ShowroomEntity showroom;
 
     @CreationTimestamp
     private Instant created_at;

@@ -40,7 +40,7 @@ public class ShowroomEntity {
     @Column(length = 255)
     private String address;
 
-    @OneToMany(mappedBy = "Showroom" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "showroom" , cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CarEntity> carEntityList = new ArrayList<>();
 
