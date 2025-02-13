@@ -15,7 +15,9 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, String> , JpaSpecificationExecutor<CarEntity> {
 
-    @Query("SELECT c FROM CarEntity c JOIN FETCH c.showroom")
+    @Query(" SELECT carEntity " +
+            "FROM CarEntity carEntity " +
+            "JOIN FETCH carEntity.showroom")
     Page<CarEntity> findAllWithShowroom(Pageable pageable);
 
 

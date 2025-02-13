@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Controller.Query;
 
 import com.elm.developerChallenge.DTO.API_Responses;
+import com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.ShowroomDTO;
 import com.elm.developerChallenge.Service.Query.ShowroomQueryServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -12,17 +13,19 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/carshowroom")
+@RequestMapping("/showroom")
 public class ShowroomQueryController {
 
   private final ShowroomQueryServiceImpl carShowroomQueryService;
 
     @GetMapping("")
-    public ResponseEntity<API_Responses<Page>> getAllCarShowrooms(
+    public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam() String sortBy) {  // Accepting sort parameter
-        return carShowroomQueryService.getAllCarShowrooms(page, size ,sortBy);
+            @RequestParam(defaultValue = "ASC") String sortDirection,
+            @RequestParam(defaultValue = "updated_at") String sortField
+            ) {
+        return carShowroomQueryService.getAllShowroom(page, size ,sortDirection , sortField);
     }
 
 
@@ -37,7 +40,7 @@ public class ShowroomQueryController {
   }
 
   @GetMapping("/sorted")
-  public ResponseEntity<API_Responses<Page>> getSortedCarShowrooms(
+  public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getSortedShowrooms(
        @RequestParam String sortBy, @RequestParam String sortDirection , @RequestParam int pageNumber) {
     System.out.println(sortBy + " " + sortDirection + " " + pageNumber);
     System.out.println(pageNumber);

@@ -12,7 +12,7 @@ import java.time.Instant;
 
 @Setter
 @Getter
-@SQLRestriction("active <>'true'")
+@SQLRestriction("active <> TRUE ")
 @Entity
 public class CarEntity {
 
@@ -42,7 +42,7 @@ public class CarEntity {
     @UpdateTimestamp
     private Instant updated_at;
 
-    private boolean active = true;
+    private boolean active;
 
 
 

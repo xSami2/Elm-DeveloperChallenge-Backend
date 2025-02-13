@@ -9,8 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Component
 public class CORS implements WebMvcConfigurer {
 
+    private final String[] allowedMethodCORS = new String[] {"GET", "POST", "PUT", "DELETE"};
+
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE");
+        registry.addMapping("/**").allowedMethods(allowedMethodCORS);
     }
 }

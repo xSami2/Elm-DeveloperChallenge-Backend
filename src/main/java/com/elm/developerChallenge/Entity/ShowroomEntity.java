@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name = "showroom")
-@SQLRestriction("active <>'true'")
+@SQLRestriction("active <> TRUE  ")
 @Entity
 public class ShowroomEntity {
 
@@ -50,7 +50,7 @@ public class ShowroomEntity {
     @UpdateTimestamp
     private Instant updated_at;
 
-    private boolean active = true;
+    private boolean active ;
 
 
 }

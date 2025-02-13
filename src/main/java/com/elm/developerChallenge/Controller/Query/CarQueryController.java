@@ -21,7 +21,7 @@ public class CarQueryController {
 
     @GetMapping("")
     public ResponseEntity<API_Responses<Page>> getAllCar(  @RequestParam(defaultValue = "0") int page,
-                                                          @RequestParam(defaultValue = "10") int size){
+                                                           @RequestParam(defaultValue = "10") int size){
         return carQueryService.getAllCar(page , size);
     }
 

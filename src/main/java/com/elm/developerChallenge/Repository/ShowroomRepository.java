@@ -1,5 +1,6 @@
 package com.elm.developerChallenge.Repository;
 
+import com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.ShowroomDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import org.springframework.data.domain.Page;
@@ -15,8 +16,10 @@ import java.util.Optional;
 public interface ShowroomRepository extends JpaRepository<ShowroomEntity, String> {
 
   @Query(
-      "SELECT new com.elm.developerChallenge.DTO.ShowroomDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber) FROM ShowroomEntity cs WHERE cs.active = true")
-  Page<ShowroomDTO> findAllCarShowrooms(Pageable pageable);
+      "SELECT new com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber , cs.managerName , cs.address)" +
+      "FROM ShowroomEntity cs " +
+      "WHERE cs.active = true")
+  Page<GetAllShowroomResponsesDTO> findAllShowroom(Pageable pageable);
 
   @Query("select name from ShowroomEntity ")
   List<String> findAllCarShowroomNames();

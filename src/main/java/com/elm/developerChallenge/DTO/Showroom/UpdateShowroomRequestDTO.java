@@ -1,17 +1,19 @@
-package com.elm.developerChallenge.DTO;
+package com.elm.developerChallenge.DTO.Showroom;
 
-
-import com.elm.developerChallenge.Entity.CarEntity;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 
+@AllArgsConstructor
 @Data
-public class ShowroomDTO {
+public class UpdateShowroomRequestDTO {
 
 
+
+    @NotEmpty(message = "Name cannot be empty or null.")
     private String id;
 
 
@@ -34,15 +36,6 @@ public class ShowroomDTO {
     @Size(max = 255, message = "Address must be at most 255 characters long.")
     private String address;
 
-    private List<CarDTO> carDTOList = new ArrayList<>();
-
-
-    public ShowroomDTO(String id , String name, String commercialRegistrationNumber, String contactNumber) {
-        this.id = id;
-        this.name = name;
-        this.commercialRegistrationNumber = commercialRegistrationNumber;
-        this.contactNumber = contactNumber;
-    }
 
 
 }

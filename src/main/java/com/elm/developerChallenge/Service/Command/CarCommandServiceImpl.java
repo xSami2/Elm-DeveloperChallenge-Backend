@@ -26,9 +26,9 @@ public class CarCommandServiceImpl {
 
    public ResponseEntity<API_Responses<CarDTO>> saveCar(CarDTO carDTO) {
        String carShowroomId = carDTO.getCarShowroom().getId();
-       Optional<ShowroomEntity> optionalCarShowroomEntity = showroomRepository.findShowroomEntityById(carShowroomId);
+       Optional<ShowroomEntity> optionalShowroomEntity = showroomRepository.findShowroomEntityById(carShowroomId);
 
-       if (optionalCarShowroomEntity.isEmpty()) {
+       if (optionalShowroomEntity.isEmpty()) {
            return ResponseEntity
                    .status(HttpStatus.BAD_REQUEST)
                    .body(
@@ -37,11 +37,13 @@ public class CarCommandServiceImpl {
        }
 
 
-       ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
        CarEntity carEntity = carMapper.convertToCarEntity(carDTO);
-       carEntity.setShowroom(carShowroomEntity);
+
+       ShowroomEntity showroomEntity = optionalShowroomEntity.get();
+       carEntity.setShowroom(showroomEntity);
        CarEntity savedCarEntity = carRepository.save(carEntity);
        CarDTO    savedCarDTO = carMapper.convertToCarDTO(savedCarEntity);
+
        return ResponseEntity
                .status(HttpStatus.OK)
                .body(

@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Service.Query;
 
 import com.elm.developerChallenge.DTO.API_Responses;
+import com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.ShowroomDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Mapper.ShowroomMapper;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,14 +25,24 @@ public class ShowroomQueryServiceImpl {
 
   private final ShowroomRepository ShowroomRepository;
   private final ShowroomMapper carShowroomMapper;
+  private final List<String> validSortFields = Arrays.asList("id" , "name" , )
 
-  public ResponseEntity<API_Responses<Page>> getAllCarShowrooms(int page , int size , String sortBy) {
-    String [] sortFilitr = sortBy.split(",");
-    Sort.Direction direction = Sort.Direction.fromString(sortFilitr[1]);
-    Sort sort = Sort.by(direction, sortFilitr[0]);
-    Pageable pageable = PageRequest.of(page, size , sort);
+  public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(int page , int size , String sortDirection , String sortField) {
+    Sort.Direction SortDirectionObject;
 
-    Page<ShowroomDTO> carShowroomPage  = ShowroomRepository.findAllCarShowrooms(pageable);
+    try{
+      SortDirectionObject = Sort.Direction.fromString(sortDirection);
+    }catch (IllegalArgumentException e){
+      SortDirectionObject = Sort.Direction.ASC;
+    }
+
+    Sort sort = Sort.by(SortDirectionObject, sortField);
+
+    Pageable pageable = PageRequest.of(page, size, sort);
+
+
+
+    Page<GetAllShowroomResponsesDTO> carShowroomPage  = ShowroomRepository.findAllShowroom(pageable);
 
     return ResponseEntity.status(HttpStatus.OK)
         .body(new API_Responses<>(200, "Get All Car Showrooms", carShowroomPage));
@@ -57,12 +69,13 @@ public class ShowroomQueryServiceImpl {
         .body(new API_Responses<>(404, "Could not find Car Showroom with id : " + uuid, null));
   }
 
-  public ResponseEntity<API_Responses<Page>> getAllActiveCarShowroomsSorted(int pageNumber,String sortBy , String sortDirection) {
+  public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllActiveCarShowroomsSorted(int pageNumber,String sortBy , String sortDirection) {
+    // Pageable is Return Entity , I must convert to DTO
     Sort.Direction direction = Sort.Direction.fromString(sortDirection);
     Sort sort = Sort.by(direction, sortBy);
     System.out.println();
     Pageable page = PageRequest.of(pageNumber , 10, sort);
-    Page<ShowroomDTO> carShowroomPage = ShowroomRepository.findAllCarShowrooms(page);
+    Page<GetAllShowroomResponsesDTO> carShowroomPage = ShowroomRepository.findAllShowroom(page);
     return ResponseEntity
             .status(HttpStatus.OK)
             .body(new API_Responses<>(200, "Get All Car Showroom Sorted by " + sortBy + " And " + sortDirection, carShowroomPage));
