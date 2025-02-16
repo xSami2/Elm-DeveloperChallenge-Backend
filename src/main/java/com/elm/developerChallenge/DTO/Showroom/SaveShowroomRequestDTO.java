@@ -10,7 +10,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class CreateShowroomRequestDTO {
+public class SaveShowroomRequestDTO {
 
 
 

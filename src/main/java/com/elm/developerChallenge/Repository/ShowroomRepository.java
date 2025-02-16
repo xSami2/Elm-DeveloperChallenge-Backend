@@ -17,11 +17,10 @@ public interface ShowroomRepository extends JpaRepository<ShowroomEntity, String
 
   @Query(
       "SELECT new com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber , cs.managerName , cs.address)" +
-      "FROM ShowroomEntity cs " +
-      "WHERE cs.active = true")
+      "FROM ShowroomEntity cs ")
   Page<GetAllShowroomResponsesDTO> findAllShowroom(Pageable pageable);
 
-  @Query("select name from ShowroomEntity ")
+  @Query("select name from ShowroomEntity")
   List<String> findAllCarShowroomNames();
 
   Optional<ShowroomEntity> findShowroomEntityByCommercialRegistrationNumber(String id);

@@ -1,13 +1,12 @@
 package com.elm.developerChallenge.Mapper;
 
-import com.elm.developerChallenge.DTO.CarDTO;
+import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
+import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
+import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
@@ -16,17 +15,28 @@ public class CarMapper {
 
     private final ObjectMapper mapper;
 
-    public CarEntity convertToCarEntity(CarDTO carDTO) {
-        return mapper.convertValue(carDTO, CarEntity.class);
+    // DTO => Entity
+
+
+    public CarEntity convertToCarEntity(SaveCarRequestDTO saveCarRequestDTO) {
+        CarEntity carEntity =  mapper.convertValue(saveCarRequestDTO, CarEntity.class);
+
+        ShowroomEntity showroomEntity = new ShowroomEntity();
+        showroomEntity.setId(saveCarRequestDTO.getCarShowroomId());
+        carEntity.setShowroom(showroomEntity);
+
+        return carEntity;
     }
 
-    public CarDTO convertToCarDTO(CarEntity carEntity) {
-        return mapper.convertValue(carEntity, CarDTO.class);
+
+
+    // Entity => DTO
+    public SaveCarResponsesDTO convertToCarDTO(CarEntity carEntity) {
+        SaveCarResponsesDTO saveCarResponsesDTO = mapper.convertValue(carEntity , SaveCarResponsesDTO.class);
+        saveCarResponsesDTO.setCarShowroomId(carEntity.getShowroom().getId());
+        return saveCarResponsesDTO;
     }
 
-    public List<CarDTO> convertToCarDTOList(List<CarEntity> carEntityList) {
-        return carEntityList.stream().map(
-                carEntity    -> mapper.convertValue( carEntity , CarDTO.class)
-        ).collect(Collectors.toList());
-    }
+
+
 }

@@ -1,12 +1,12 @@
 package com.elm.developerChallenge.Service.Query;
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.CarDTO;
+import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
 import com.elm.developerChallenge.DTO.CarFilter;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
 import com.elm.developerChallenge.Repository.CarRepository;
-import com.elm.developerChallenge.Spec.CarSpec;
+import com.elm.developerChallenge.Specification.CarSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,8 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 public class CarQueryServiceImpl {
@@ -25,35 +23,29 @@ public class CarQueryServiceImpl {
   private final CarRepository carRepository;
   private final CarMapper carMapper;
 
-  public ResponseEntity<API_Responses<Page>> getAllCar(int page, int size) {
+  public ResponseEntity<API_Responses<Page<GetCarResponsesDTO>>> getAllCar(int page, int size) {
     Pageable pageable = PageRequest.of(page, size);
 
-    Page<CarEntity> carEntitiePage = carRepository.findAllWithShowroom(pageable);
+    Page<GetCarResponsesDTO> carDTOPage = carRepository.findAllWithShowroom(pageable);
 
     return ResponseEntity.status(HttpStatus.OK)
-        .body(new API_Responses<>(200, "getAllCar", carEntitiePage));
+        .body(new API_Responses<>(200, "Successfully retrieved all cars.", carDTOPage));
   }
 
-  public ResponseEntity<API_Responses<List<CarDTO>>> getAllCarByShowroom(String carShowroomId) {
-    System.out.println(carShowroomId);
-    List<CarEntity> carEntityList = carRepository.findAllByShowroom_Id(carShowroomId);
-    System.out.println(carEntityList);
-    List<CarDTO> carDTOList = carMapper.convertToCarDTOList(carEntityList);
-    return ResponseEntity.status(HttpStatus.OK)
-        .body(new API_Responses<>(200, "getAllCarByShowroom", carDTOList));
-  }
 
-  public ResponseEntity<API_Responses<List<CarDTO>>> getCars(
+  public ResponseEntity<API_Responses<Page<CarEntity>>> getFilteredCars(
           String maker , String model , String modelYear , String carShowroom,Double price
   ){
       CarFilter carFilter = new CarFilter(maker,model,modelYear,price,carShowroom);
-      Specification<CarEntity> spec = CarSpec.createSpecification(carFilter);
-        List<CarEntity> carEntityList = carRepository.findAll(spec);
-        List<CarDTO> carDTOList = carMapper.convertToCarDTOList(carEntityList);
+      Specification<CarEntity> spec = CarSpecification.createSpecification(carFilter);
+      Pageable pageable = PageRequest.of(0, 10);
+      Page<CarEntity> carEntities = carRepository.findAll(spec ,pageable);
+
         return ResponseEntity
+
                 .status(HttpStatus.OK)
                 .body(
-                        new API_Responses<>(200 , "GET" , carDTOList)
+                        new API_Responses<>(200 , "GET" , carEntities)
                 );
 
   }

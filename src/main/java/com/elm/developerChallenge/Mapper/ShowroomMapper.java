@@ -1,7 +1,7 @@
 package com.elm.developerChallenge.Mapper;
 
-import com.elm.developerChallenge.DTO.Showroom.CreateShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.CreateShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomRequestDTO;
 import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.ShowroomDTO;
@@ -25,8 +25,8 @@ public class ShowroomMapper {
         return mapper.convertValue(showroomDTO, ShowroomEntity.class);
     }
 
-    public ShowroomEntity convertToShowroomEntity(CreateShowroomRequestDTO createShowroomRequestDTO) {
-        return mapper.convertValue(createShowroomRequestDTO, ShowroomEntity.class);
+    public ShowroomEntity convertToShowroomEntity(SaveShowroomRequestDTO saveShowroomRequestDTO) {
+        return mapper.convertValue(saveShowroomRequestDTO, ShowroomEntity.class);
     }
 
     public ShowroomEntity convertToShowroomEntity(UpdateShowroomRequestDTO updateShowroomRequestDTO) {
@@ -46,8 +46,8 @@ public class ShowroomMapper {
         ).collect(Collectors.toList());
     }
 
-    public CreateShowroomResponsesDTO convertToCreateShowroomResponsesDTO(ShowroomEntity showroomEntity){
-        return mapper.convertValue(showroomEntity, CreateShowroomResponsesDTO.class);
+    public SaveShowroomResponsesDTO convertToCreateShowroomResponsesDTO(ShowroomEntity showroomEntity){
+        return mapper.convertValue(showroomEntity, SaveShowroomResponsesDTO.class);
 
     }
 

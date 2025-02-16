@@ -39,11 +39,5 @@ public class ShowroomQueryController {
     return carShowroomQueryService.getCarShowroom(id);
   }
 
-  @GetMapping("/sorted")
-  public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getSortedShowrooms(
-       @RequestParam String sortBy, @RequestParam String sortDirection , @RequestParam int pageNumber) {
-    System.out.println(sortBy + " " + sortDirection + " " + pageNumber);
-    System.out.println(pageNumber);
-    return carShowroomQueryService.getAllActiveCarShowroomsSorted(pageNumber ,sortBy, sortDirection);
-  }
+
 }

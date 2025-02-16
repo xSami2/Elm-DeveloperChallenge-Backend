@@ -2,11 +2,10 @@ package com.elm.developerChallenge.Service.Command;
 
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Showroom.CreateShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.CreateShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomRequestDTO;
 import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomResponsesDTO;
-import com.elm.developerChallenge.DTO.ShowroomDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Mapper.ShowroomMapper;
 import com.elm.developerChallenge.Repository.ShowroomRepository;
@@ -28,9 +27,11 @@ public class ShowroomCommandServiceImpl {
     private final ShowroomMapper showroomMapper;
 
 
-    public ResponseEntity<API_Responses<CreateShowroomResponsesDTO>> saveCarShowroom(CreateShowroomRequestDTO createShowroomRequestDTO) {
+    public ResponseEntity<API_Responses<SaveShowroomResponsesDTO>> saveCarShowroom(SaveShowroomRequestDTO saveShowroomRequestDTO) {
+        String commercialRegistrationNumber = saveShowroomRequestDTO.getCommercialRegistrationNumber();
+
         Optional<ShowroomEntity> existingCommercialRegistrationNumber = showroomRepository
-                .findShowroomEntityByCommercialRegistrationNumber(createShowroomRequestDTO.getCommercialRegistrationNumber());
+                .findShowroomEntityByCommercialRegistrationNumber(commercialRegistrationNumber);
 
 
         // Early Return if Commercial Registration Number is already taken
@@ -47,10 +48,10 @@ public class ShowroomCommandServiceImpl {
         }
 
 
-        ShowroomEntity showroomEntity = showroomMapper.convertToShowroomEntity(createShowroomRequestDTO);
+        ShowroomEntity showroomEntity = showroomMapper.convertToShowroomEntity(saveShowroomRequestDTO);
         ShowroomEntity savedShowroomEntity = showroomRepository.save(showroomEntity);
 
-        CreateShowroomResponsesDTO savedShowroomDTO = showroomMapper.convertToCreateShowroomResponsesDTO(savedShowroomEntity);
+        SaveShowroomResponsesDTO savedShowroomDTO = showroomMapper.convertToCreateShowroomResponsesDTO(savedShowroomEntity);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new API_Responses<>(201, "Showroom created successfully", savedShowroomDTO));
@@ -60,7 +61,8 @@ public class ShowroomCommandServiceImpl {
     }
 
     public ResponseEntity<API_Responses<UpdateShowroomResponsesDTO>> updateShowroom(UpdateShowroomRequestDTO updateShowroomRequestDTO){
-        Optional<ShowroomEntity> optionalShowroomEntity = showroomRepository.findById(updateShowroomRequestDTO.getId());
+        String showroomId = updateShowroomRequestDTO.getId();
+        Optional<ShowroomEntity> optionalShowroomEntity = showroomRepository.findById(showroomId);
 
         // Early Return if showroom not exists
         if (optionalShowroomEntity.isEmpty()){
@@ -93,14 +95,19 @@ public class ShowroomCommandServiceImpl {
         }
 
 
-        ShowroomEntity showroomEntity = optionalCarShowroomEntity.get();
-        showroomEntity.setActive(false);
-        showroomRepository.save(showroomEntity);
+
+        showroomRepository.deleteById(carShowroomId);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new API_Responses<>(200,
-                        "Showroom with ID " + showroomEntity.getId() + " has been successfully deleted.",
-                        showroomEntity.getId()));
+                .body(
+                        new API_Responses<>(
+                                200,
+                                "Showroom with ID " + carShowroomId + " has been successfully deleted.",
+                                null
+                        )
+                );
+
 
 
     }

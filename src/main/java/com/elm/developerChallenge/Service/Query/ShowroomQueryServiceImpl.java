@@ -25,7 +25,7 @@ public class ShowroomQueryServiceImpl {
 
   private final ShowroomRepository ShowroomRepository;
   private final ShowroomMapper carShowroomMapper;
-  private final List<String> validSortFields = Arrays.asList("id" , "name" , )
+ // private final List<String> validSortFields = Arrays.asList("id" , "name" , )
 
   public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(int page , int size , String sortDirection , String sortField) {
     Sort.Direction SortDirectionObject;

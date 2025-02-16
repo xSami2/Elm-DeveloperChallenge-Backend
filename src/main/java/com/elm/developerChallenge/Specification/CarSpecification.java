@@ -1,4 +1,4 @@
-package com.elm.developerChallenge.Spec;
+package com.elm.developerChallenge.Specification;
 
 import com.elm.developerChallenge.DTO.CarFilter;
 import com.elm.developerChallenge.Entity.CarEntity;
@@ -6,15 +6,13 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-import java.math.BigDecimal;
-import java.util.Objects;
 
 @Data
-public class CarSpec {
+public class CarSpecification {
 
     public static Specification<CarEntity> createSpecification(CarFilter criteria) {
+
         return (root, query, builder) -> {
             Predicate predicate = builder.conjunction(); // Start with an always true predicate
 

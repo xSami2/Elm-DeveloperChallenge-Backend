@@ -1,16 +1,17 @@
-package com.elm.developerChallenge.DTO;
+package com.elm.developerChallenge.DTO.Car;
 
-
-import jakarta.validation.constraints.*;
+import com.elm.developerChallenge.DTO.ShowroomDTO;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-
 @Data
-public class CarDTO {
+public class SaveCarRequestDTO {
 
 
 
-    private String id;
 
     @NotEmpty(message = "Vin cannot be empty or null.")
     private String vehicleIdentificationNumber;
@@ -32,9 +33,7 @@ public class CarDTO {
     @NotNull(message = "Price cannot be null.")
     private Double price;
 
-
-    private ShowroomDTO carShowroom;
-
-
+    @NotNull
+    private String carShowroomId;
 
 }

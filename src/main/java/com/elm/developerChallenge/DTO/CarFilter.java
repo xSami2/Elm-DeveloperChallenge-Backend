@@ -12,6 +12,4 @@ public class CarFilter {
     private Double price;
     private String carShowroomId;
 
-
-
 }

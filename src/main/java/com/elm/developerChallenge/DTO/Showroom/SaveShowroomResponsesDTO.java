@@ -6,7 +6,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class CreateShowroomResponsesDTO {
+public class SaveShowroomResponsesDTO {
 
 
 
