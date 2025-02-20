@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class CarQueryServiceImpl {
@@ -33,19 +35,21 @@ public class CarQueryServiceImpl {
   }
 
 
-  public ResponseEntity<API_Responses<Page<CarEntity>>> getFilteredCars(
+  public ResponseEntity<API_Responses<Page<GetCarResponsesDTO>>> getFilteredCars(
           String maker , String model , String modelYear , String carShowroom,Double price
   ){
       CarFilter carFilter = new CarFilter(maker,model,modelYear,price,carShowroom);
       Specification<CarEntity> spec = CarSpecification.createSpecification(carFilter);
       Pageable pageable = PageRequest.of(0, 10);
       Page<CarEntity> carEntities = carRepository.findAll(spec ,pageable);
+      Page<GetCarResponsesDTO> getCarResponsesDTOList = carMapper.convertToDTO(carEntities);
+
 
         return ResponseEntity
 
                 .status(HttpStatus.OK)
                 .body(
-                        new API_Responses<>(200 , "GET" , carEntities)
+                        new API_Responses<>(200 , "GET" , getCarResponsesDTOList)
                 );
 
   }

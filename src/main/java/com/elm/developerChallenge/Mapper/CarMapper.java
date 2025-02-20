@@ -1,12 +1,18 @@
 package com.elm.developerChallenge.Mapper;
 
+import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
 import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
 import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
@@ -31,10 +37,21 @@ public class CarMapper {
 
 
     // Entity => DTO
-    public SaveCarResponsesDTO convertToCarDTO(CarEntity carEntity) {
+    public SaveCarResponsesDTO convertToDTO(CarEntity carEntity) {
         SaveCarResponsesDTO saveCarResponsesDTO = mapper.convertValue(carEntity , SaveCarResponsesDTO.class);
         saveCarResponsesDTO.setCarShowroomId(carEntity.getShowroom().getId());
         return saveCarResponsesDTO;
+    }
+    public Page<GetCarResponsesDTO> convertToDTO(Page<CarEntity> carEntities){
+       List<GetCarResponsesDTO> getCarResponsesDTOList = carEntities.getContent()
+               .stream()
+               .map(CarEntity -> {
+                 return  mapper.convertValue(CarEntity , GetCarResponsesDTO.class);
+               }
+               ).toList();
+        return new PageImpl<>(getCarResponsesDTOList, carEntities.getPageable(), carEntities.getTotalElements());
+
+
     }
 
 

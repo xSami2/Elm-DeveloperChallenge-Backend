@@ -5,7 +5,6 @@ import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
 import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
-import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
 import com.elm.developerChallenge.Repository.CarRepository;
 import com.elm.developerChallenge.Repository.ShowroomRepository;
@@ -31,7 +30,7 @@ public class CarCommandServiceImpl {
 
 
        CarEntity savedCarEntity = carRepository.save(carEntity);
-       SaveCarResponsesDTO saveCarResponsesDTO = carMapper.convertToCarDTO(savedCarEntity);
+       SaveCarResponsesDTO saveCarResponsesDTO = carMapper.convertToDTO(savedCarEntity);
 
        return ResponseEntity
                .status(HttpStatus.CREATED)

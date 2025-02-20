@@ -31,7 +31,7 @@ public class CarQueryQueryController implements ICarQueryController {
 
         @Override
         @GetMapping("/filter")
-        public ResponseEntity<API_Responses<Page<CarEntity>>> getFilteredCars(
+        public ResponseEntity<API_Responses<Page<GetCarResponsesDTO>>> getFilteredCars(
                 @RequestParam(required = false) String maker,
                 @RequestParam(required = false) String model,
                 @RequestParam(required = false) String modelYear,

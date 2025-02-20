@@ -32,13 +32,6 @@ public interface ICarQueryController {
                             description = "Successfully retrieved all cars.",
                             responseCode = "200"
                     ),
-                    @ApiResponse(
-                            description = "Internal Server Error",
-                            responseCode = "500",
-                            content = @Content(
-                                    schema = @Schema(implementation = Void.class)
-                            )
-                    )
             }
     )
     public ResponseEntity<API_Responses<Page<GetCarResponsesDTO>>> getAllCar(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size);
@@ -52,13 +45,6 @@ public interface ICarQueryController {
                             description = "Successfully retrieved filtered cars.",
                             responseCode = "200"
                     ),
-                    @ApiResponse(
-                            description = "Internal Server Error",
-                            responseCode = "500",
-                            content = @Content(
-                                    schema = @Schema(implementation = Void.class)
-                            )
-                    )
             },
             parameters = {
                     @Parameter(name = "maker", description = "Filter cars by maker", required = false),
@@ -69,11 +55,11 @@ public interface ICarQueryController {
             }
     )
     @GetMapping("/filter")
-    public ResponseEntity<API_Responses<Page<CarEntity>>> getFilteredCars(
+    public ResponseEntity<API_Responses<Page<GetCarResponsesDTO>>> getFilteredCars(
             @RequestParam(required = false) String maker,
             @RequestParam(required = false) String model,
             @RequestParam(required = false) String modelYear,
-            @RequestParam(required = false) String carShowroom,
+            @RequestParam(required = false) String carShowroomId,
             @RequestParam(required = false) Double price
     );
 

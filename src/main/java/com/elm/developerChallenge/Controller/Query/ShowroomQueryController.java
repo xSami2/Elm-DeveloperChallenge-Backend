@@ -1,5 +1,6 @@
 package com.elm.developerChallenge.Controller.Query;
 
+import com.elm.developerChallenge.Controller.Query.Interface.IShowroomQueryController;
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.ShowroomDTO;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/showroom")
-public class ShowroomQueryController {
+public class ShowroomQueryController implements IShowroomQueryController {
 
   private final ShowroomQueryServiceImpl carShowroomQueryService;
 
@@ -23,20 +24,18 @@ public class ShowroomQueryController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "ASC") String sortDirection,
-            @RequestParam(defaultValue = "updated_at") String sortField
+            @RequestParam(defaultValue = "updated_at") String sortField,
+            @RequestParam(defaultValue = "" , required = false) String showroomName // UI Dropdown
             ) {
-        return carShowroomQueryService.getAllShowroom(page, size ,sortDirection , sortField);
+        return carShowroomQueryService.getAllShowroom(page, size ,sortDirection , sortField , showroomName);
     }
 
 
-    @GetMapping("/names")
-  public ResponseEntity<API_Responses<List<ShowroomDTO>>> getAllCarShowroomsNames() {
-    return carShowroomQueryService.getAllCarShowroomsNames();
-  }
+
 
   @GetMapping("/{id}")
-  public ResponseEntity<API_Responses<ShowroomDTO>> getCarShowroom(@PathVariable String id) {
-    return carShowroomQueryService.getCarShowroom(id);
+  public ResponseEntity<API_Responses<ShowroomDTO>> getShowroom(@PathVariable String id) {
+    return carShowroomQueryService.getShowroom(id);
   }
 
 

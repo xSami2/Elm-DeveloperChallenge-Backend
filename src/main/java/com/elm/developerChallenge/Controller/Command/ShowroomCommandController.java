@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Controller.Command;
 
 
+import com.elm.developerChallenge.Controller.Command.Interface.IShowroomCommandController;
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
 import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController()
 @RequestMapping("/showroom")
-public class ShowroomCommandController {
+public class ShowroomCommandController implements IShowroomCommandController {
 
     private final ShowroomCommandServiceImpl showroomCommandService;
 

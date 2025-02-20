@@ -35,13 +35,6 @@ public interface ICarCommandController {
                                     )
                             )
                     ),
-                    @ApiResponse(
-                            description = "Internal Server Error",
-                            responseCode = "500",
-                            content = @Content(
-                                    schema = @Schema(implementation = Void.class)
-                            )
-                    )
             }
     )
     ResponseEntity<API_Responses<SaveCarResponsesDTO>> saveCar(@Valid @RequestBody SaveCarRequestDTO saveCarRequestDTO);
