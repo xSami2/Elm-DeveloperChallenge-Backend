@@ -1,10 +1,10 @@
 package com.elm.developerChallenge.Mapper;
 
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomResponsesDTO;
-import com.elm.developerChallenge.DTO.ShowroomDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.SaveShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.UpdateShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.UpdateShowroomResponsesDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,8 @@ public class ShowroomMapper {
 
     // Convert From DTO to Entity ( OverLoading Method )
 
-    public ShowroomEntity convertToShowroomEntity(ShowroomDTO showroomDTO) {
-        return mapper.convertValue(showroomDTO, ShowroomEntity.class);
+    public ShowroomEntity convertToShowroomEntity(GetShowroomResponsesDTO getShowroomResponsesDTO) {
+        return mapper.convertValue(getShowroomResponsesDTO, ShowroomEntity.class);
     }
 
     public ShowroomEntity convertToShowroomEntity(SaveShowroomRequestDTO saveShowroomRequestDTO) {
@@ -36,13 +36,13 @@ public class ShowroomMapper {
 
     // Convert From Entity to DTO
 
-    public ShowroomDTO convertToCarShowroomDTO(ShowroomEntity carShowroomEntity) {
-        return mapper.convertValue(carShowroomEntity, ShowroomDTO.class);
+    public GetShowroomResponsesDTO convertToCarShowroomDTO(ShowroomEntity carShowroomEntity) {
+        return mapper.convertValue(carShowroomEntity, GetShowroomResponsesDTO.class);
     }
 
-    public List<ShowroomDTO> convertToCarShowroomDTOList(List<ShowroomEntity> carShowroomEntityList) {
+    public List<GetShowroomResponsesDTO> convertToCarShowroomDTOList(List<ShowroomEntity> carShowroomEntityList) {
        return carShowroomEntityList.stream().map(
-                carShowroomEntity    -> mapper.convertValue( carShowroomEntity , ShowroomDTO.class)
+                carShowroomEntity    -> mapper.convertValue( carShowroomEntity , GetShowroomResponsesDTO.class)
         ).collect(Collectors.toList());
     }
 

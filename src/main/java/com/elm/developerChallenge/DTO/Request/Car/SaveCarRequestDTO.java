@@ -1,6 +1,5 @@
-package com.elm.developerChallenge.DTO.Car;
+package com.elm.developerChallenge.DTO.Request.Car;
 
-import com.elm.developerChallenge.DTO.ShowroomDTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

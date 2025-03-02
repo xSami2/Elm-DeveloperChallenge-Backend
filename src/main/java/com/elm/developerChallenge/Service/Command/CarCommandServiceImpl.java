@@ -2,8 +2,8 @@ package com.elm.developerChallenge.Service.Command;
 
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
-import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Car.SaveCarRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
 import com.elm.developerChallenge.Repository.CarRepository;

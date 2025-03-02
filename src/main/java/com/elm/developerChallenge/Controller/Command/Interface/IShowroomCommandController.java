@@ -1,12 +1,10 @@
 package com.elm.developerChallenge.Controller.Command.Interface;
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
-import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.SaveShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.UpdateShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.UpdateShowroomResponsesDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

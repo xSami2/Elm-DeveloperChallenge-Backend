@@ -1,6 +1,6 @@
 package com.elm.developerChallenge.Specification;
 
-import com.elm.developerChallenge.DTO.CarFilter;
+import com.elm.developerChallenge.DTO.Request.Specification.CarFilter;
 import com.elm.developerChallenge.Entity.CarEntity;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;

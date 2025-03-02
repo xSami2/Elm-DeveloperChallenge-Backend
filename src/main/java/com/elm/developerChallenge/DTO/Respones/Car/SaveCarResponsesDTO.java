@@ -1,13 +1,9 @@
-package com.elm.developerChallenge.DTO.Car;
+package com.elm.developerChallenge.DTO.Respones.Car;
 
-
-import com.elm.developerChallenge.DTO.ShowroomDTO;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
-
 @Data
-public class GetCarResponsesDTO {
+public class SaveCarResponsesDTO {
 
 
 
@@ -15,13 +11,9 @@ public class GetCarResponsesDTO {
 
     private String vehicleIdentificationNumber;
 
-
-
     private String maker;
 
-
     private String model;
-
 
 
     private String modelYear;
@@ -29,7 +21,5 @@ public class GetCarResponsesDTO {
     private Double price;
 
     private String carShowroomId;
-
-
 
 }

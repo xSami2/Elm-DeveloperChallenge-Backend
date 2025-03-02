@@ -1,16 +1,9 @@
-package com.elm.developerChallenge.DTO.Showroom;
+package com.elm.developerChallenge.DTO.Respones.Showroom;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
-@AllArgsConstructor
 @Data
-public class SaveShowroomResponsesDTO {
-
-
-
-
+public class GetShowroomResponsesDTO {
 
     private String id;
 
@@ -23,7 +16,4 @@ public class SaveShowroomResponsesDTO {
     private String contactNumber;
 
     private String address;
-
-
-
 }

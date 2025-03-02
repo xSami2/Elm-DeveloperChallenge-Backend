@@ -1,8 +1,8 @@
 package com.elm.developerChallenge.Service.Query;
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
-import com.elm.developerChallenge.DTO.CarFilter;
+import com.elm.developerChallenge.DTO.Respones.Car.GetCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Specification.CarFilter;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Mapper.CarMapper;
 import com.elm.developerChallenge.Repository.CarRepository;
@@ -15,8 +15,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service

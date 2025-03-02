@@ -1,4 +1,4 @@
-package com.elm.developerChallenge.DTO.Showroom;
+package com.elm.developerChallenge.DTO.Request.Showroom;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

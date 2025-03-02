@@ -1,8 +1,8 @@
 package com.elm.developerChallenge.Mapper;
 
-import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
-import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
-import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Respones.Car.GetCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Car.SaveCarRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component

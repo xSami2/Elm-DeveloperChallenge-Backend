@@ -1,4 +1,4 @@
-package com.elm.developerChallenge.DTO;
+package com.elm.developerChallenge.DTO.Request.Specification;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

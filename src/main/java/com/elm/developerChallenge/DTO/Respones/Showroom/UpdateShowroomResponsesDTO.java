@@ -1,4 +1,4 @@
-package com.elm.developerChallenge.DTO.Showroom;
+package com.elm.developerChallenge.DTO.Respones.Showroom;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class GetAllShowroomResponsesDTO {
+public class UpdateShowroomResponsesDTO {
 
 
 

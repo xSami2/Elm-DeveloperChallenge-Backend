@@ -1,18 +1,17 @@
-package com.elm.developerChallenge.DTO;
+package com.elm.developerChallenge.DTO.Request.Showroom;
 
-
-import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 
+
+@AllArgsConstructor
 @Data
-public class ShowroomDTO {
+public class SaveShowroomRequestDTO {
 
-
-    private String id;
 
 
 
@@ -34,15 +33,6 @@ public class ShowroomDTO {
     @Size(max = 255, message = "Address must be at most 255 characters long.")
     private String address;
 
-    private List<GetCarResponsesDTO> getCarResponsesDTOList = new ArrayList<>();
-
-
-    public ShowroomDTO(String id , String name, String commercialRegistrationNumber, String contactNumber) {
-        this.id = id;
-        this.name = name;
-        this.commercialRegistrationNumber = commercialRegistrationNumber;
-        this.contactNumber = contactNumber;
-    }
 
 
 }

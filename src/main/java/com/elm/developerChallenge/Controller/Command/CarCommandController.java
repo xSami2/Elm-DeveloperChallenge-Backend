@@ -3,8 +3,8 @@ package com.elm.developerChallenge.Controller.Command;
 
 import com.elm.developerChallenge.Controller.Command.Interface.ICarCommandController;
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Car.SaveCarRequestDTO;
-import com.elm.developerChallenge.DTO.Car.SaveCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Car.SaveCarRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Car.SaveCarResponsesDTO;
 import com.elm.developerChallenge.Service.Command.CarCommandServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

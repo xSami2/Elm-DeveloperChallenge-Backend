@@ -2,10 +2,10 @@ package com.elm.developerChallenge.Service.Command;
 
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.SaveShowroomResponsesDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomRequestDTO;
-import com.elm.developerChallenge.DTO.Showroom.UpdateShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.SaveShowroomResponsesDTO;
+import com.elm.developerChallenge.DTO.Request.Showroom.UpdateShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.UpdateShowroomResponsesDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Mapper.ShowroomMapper;
 import com.elm.developerChallenge.Repository.ShowroomRepository;

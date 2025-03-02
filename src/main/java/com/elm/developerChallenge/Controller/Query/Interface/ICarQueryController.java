@@ -2,13 +2,9 @@ package com.elm.developerChallenge.Controller.Query.Interface;
 
 
 import com.elm.developerChallenge.DTO.API_Responses;
-import com.elm.developerChallenge.DTO.Car.GetCarResponsesDTO;
-import com.elm.developerChallenge.Entity.CarEntity;
+import com.elm.developerChallenge.DTO.Respones.Car.GetCarResponsesDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
