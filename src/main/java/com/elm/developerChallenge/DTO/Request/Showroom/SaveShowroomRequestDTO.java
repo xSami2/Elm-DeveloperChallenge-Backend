@@ -27,7 +27,7 @@ public class SaveShowroomRequestDTO {
     private String managerName;
 
     @NotEmpty(message = "Contact Number is required and cannot be empty.")
-    @Pattern(regexp = "^[0-9]{10,15}$", message = "Commercial registration number must be between 10 and 15 digits")
+    @Pattern(regexp = "^[0-9]{10,15}$", message = "Contact Number number must be between 10 and 15 digits")
     private String contactNumber;
 
     @Size(max = 255, message = "Address must be at most 255 characters long.")

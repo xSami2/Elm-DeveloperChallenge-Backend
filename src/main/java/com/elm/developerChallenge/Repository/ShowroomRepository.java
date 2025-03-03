@@ -14,10 +14,7 @@ import java.util.Optional;
 @Repository
 public interface ShowroomRepository extends JpaRepository<ShowroomEntity, String> {
 
-  @Query(
-      "SELECT new com.elm.developerChallenge.DTO.Respones.Showroom.GetAllShowroomResponsesDTO(cs.id, cs.name, cs.commercialRegistrationNumber, cs.contactNumber , cs.managerName , cs.address)" +
-      "FROM ShowroomEntity cs ")
-  Page<GetAllShowroomResponsesDTO> findAllShowroom(Pageable pageable);
+
 
   @Query("select name from ShowroomEntity")
   List<String> findAllCarShowroomNames();

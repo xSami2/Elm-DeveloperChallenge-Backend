@@ -39,8 +39,8 @@ public class CarQueryServiceImpl {
       CarFilter carFilter = new CarFilter(maker,model,modelYear,price,carShowroom);
       Specification<CarEntity> spec = CarSpecification.createSpecification(carFilter);
       Pageable pageable = PageRequest.of(0, 10);
-      Page<CarEntity> carEntities = carRepository.findAll(spec ,pageable);
-      Page<GetCarResponsesDTO> getCarResponsesDTOList = carMapper.convertToDTO(carEntities);
+      Page<CarEntity> pageableCarEntities = carRepository.findAll(spec ,pageable);
+      Page<GetCarResponsesDTO> getCarResponsesDTOList = carMapper.convertToDTO(pageableCarEntities);
 
 
         return ResponseEntity

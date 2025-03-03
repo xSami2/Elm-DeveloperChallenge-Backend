@@ -21,15 +21,19 @@ import java.util.Optional;
 @Service
 public class ShowroomQueryServiceImpl {
 
-  private final ShowroomRepository ShowroomRepository;
-  private final ShowroomMapper carShowroomMapper;
+  private final ShowroomRepository showroomRepository;
+  private final ShowroomMapper showroomMapper;
  // private final List<String> validSortFields = Arrays.asList("id" , "name" , )
 
-  public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(int page , int size , String sortDirection , String sortField) {
+  public ResponseEntity<API_Responses<Page<ShowroomEntity>>> getAllShowroom(int page , int size , String sortDirection , String sortField) {
+
     Sort.Direction SortDirectionObject;
+
     try{
+
       SortDirectionObject = Sort.Direction.fromString(sortDirection);
-    }catch (IllegalArgumentException e){
+
+    } catch (IllegalArgumentException e){
       SortDirectionObject = Sort.Direction.ASC;
     }
 
@@ -39,19 +43,20 @@ public class ShowroomQueryServiceImpl {
 
 
 
-    Page<GetAllShowroomResponsesDTO> carShowroomPage  = ShowroomRepository.findAllShowroom(pageable);
+    Page<ShowroomEntity> pageableAllShowroomEntity  = showroomRepository.findAll(pageable);
+   // Page<GetAllShowroomResponsesDTO> allShowroomDTOs = showroomMapper.convertToDTO(pageableAllShowroomEntity);
 
     return ResponseEntity.status(HttpStatus.OK)
-        .body(new API_Responses<>(200, "Get All Showrooms", carShowroomPage));
+        .body(new API_Responses<>(200, "Get All Showrooms", pageableAllShowroomEntity));
   }
 
   public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroom(String uuid) {
     Optional<ShowroomEntity> optionalCarShowroomEntity =
-        ShowroomRepository.findShowroomEntityById(uuid);
+        showroomRepository.findShowroomEntityById(uuid);
 
     if (optionalCarShowroomEntity.isPresent()) {
       ShowroomEntity carShowroomEntity = optionalCarShowroomEntity.get();
-      GetShowroomResponsesDTO getShowroomResponsesDTO = carShowroomMapper.convertToCarShowroomDTO(carShowroomEntity);
+      GetShowroomResponsesDTO getShowroomResponsesDTO = showroomMapper.convertToCarShowroomDTO(carShowroomEntity);
       return ResponseEntity.status(HttpStatus.OK)
           .body(new API_Responses<>(200, "Get Car Showroom", getShowroomResponsesDTO));
     }

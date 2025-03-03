@@ -42,15 +42,9 @@ public class CarMapper {
         return saveCarResponsesDTO;
     }
     public Page<GetCarResponsesDTO> convertToDTO(Page<CarEntity> carEntities){
-       List<GetCarResponsesDTO> getCarResponsesDTOList = carEntities.getContent()
-               .stream()
-               .map(CarEntity -> {
-                 return  mapper.convertValue(CarEntity , GetCarResponsesDTO.class);
-               }
-               ).toList();
-        return new PageImpl<>(getCarResponsesDTOList, carEntities.getPageable(), carEntities.getTotalElements());
-
-
+            return  carEntities.map(carEntity -> {
+               return mapper.convertValue(carEntity ,GetCarResponsesDTO.class);
+            });
     }
 
 

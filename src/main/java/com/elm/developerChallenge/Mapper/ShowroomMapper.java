@@ -1,6 +1,7 @@
 package com.elm.developerChallenge.Mapper;
 
 import com.elm.developerChallenge.DTO.Request.Showroom.SaveShowroomRequestDTO;
+import com.elm.developerChallenge.DTO.Respones.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Respones.Showroom.SaveShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Request.Showroom.UpdateShowroomRequestDTO;
@@ -8,6 +9,8 @@ import com.elm.developerChallenge.DTO.Respones.Showroom.UpdateShowroomResponsesD
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -54,6 +57,13 @@ public class ShowroomMapper {
     public UpdateShowroomResponsesDTO convertToUpdateShowroomResponsesDTO(ShowroomEntity showroomEntity){
         return mapper.convertValue(showroomEntity, UpdateShowroomResponsesDTO.class);
     }
+
+    public Page<GetAllShowroomResponsesDTO> convertToDTO(Page<ShowroomEntity> pageableAllShowroomEntity) {
+       return pageableAllShowroomEntity.map( showroomEntity -> {
+           return mapper.convertValue(showroomEntity ,GetAllShowroomResponsesDTO.class);
+       });
+    }
+
 
 
 

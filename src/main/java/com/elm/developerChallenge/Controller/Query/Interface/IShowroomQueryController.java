@@ -3,6 +3,7 @@ package com.elm.developerChallenge.Controller.Query.Interface;
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
+import com.elm.developerChallenge.Entity.ShowroomEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public interface IShowroomQueryController {
                     responseCode = "200"
             )
     )
-    public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(
+    public ResponseEntity<API_Responses<Page<ShowroomEntity>>> getAllShowroom(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "ASC") String sortDirection,

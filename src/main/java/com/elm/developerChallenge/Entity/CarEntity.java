@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,7 +14,8 @@ import java.time.Instant;
 @Setter
 @Getter
 @SQLRestriction("active <> TRUE ")
-@Entity
+@SQLDelete(sql = "UPDATE car SET active = TRUE WHERE id=?")
+@Entity(name = "car")
 public class CarEntity {
 
     @Id

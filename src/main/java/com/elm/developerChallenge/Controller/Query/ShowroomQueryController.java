@@ -4,6 +4,7 @@ import com.elm.developerChallenge.Controller.Query.Interface.IShowroomQueryContr
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
+import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Service.Query.ShowroomQueryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,16 +16,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/showroom")
 public class ShowroomQueryController implements IShowroomQueryController {
 
-  private final ShowroomQueryServiceImpl carShowroomQueryService;
+  private final ShowroomQueryServiceImpl showroomQueryService;
 
     @GetMapping("")
-    public ResponseEntity<API_Responses<Page<GetAllShowroomResponsesDTO>>> getAllShowroom(
+    public ResponseEntity<API_Responses<Page<ShowroomEntity>>> getAllShowroom(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "ASC") String sortDirection,
             @RequestParam(defaultValue = "updated_at") String sortField
             ) {
-        return carShowroomQueryService.getAllShowroom(page, size ,sortDirection , sortField);
+        return showroomQueryService.getAllShowroom(page, size ,sortDirection , sortField);
     }
 
 
@@ -32,7 +33,7 @@ public class ShowroomQueryController implements IShowroomQueryController {
 
   @GetMapping("/{id}")
   public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroom(@PathVariable String id) {
-    return carShowroomQueryService.getShowroom(id);
+    return showroomQueryService.getShowroom(id);
   }
 
 

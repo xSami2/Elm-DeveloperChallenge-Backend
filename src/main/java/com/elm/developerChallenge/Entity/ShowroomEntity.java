@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Table(name = "showroom")
 @SQLRestriction("active <> TRUE  ")
-@SQLDelete(sql = "UPDATE showroom SET deleted = TRUE WHERE Id=?")
+@SQLDelete(sql = "UPDATE showroom SET active = TRUE WHERE id=?")
 @Entity
 public class ShowroomEntity {
 

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarCommandServiceImpl {
 
-    private final ShowroomRepository showroomRepository;
     private final CarRepository carRepository;
     private final CarMapper carMapper;
 
