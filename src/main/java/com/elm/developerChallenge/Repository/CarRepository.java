@@ -17,6 +17,7 @@ public interface CarRepository extends JpaRepository<CarEntity, String> , JpaSpe
             "FROM CarEntity carEntity " +
             "JOIN FETCH carEntity.showroom")
     Page<GetCarResponsesDTO> findAllWithShowroom(Pageable pageable);
+
     Page<GetCarResponsesDTO> findAllByShowroom_Id(String ShowroomId , Pageable page);
 
 

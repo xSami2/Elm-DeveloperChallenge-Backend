@@ -15,7 +15,8 @@ import java.time.Instant;
 @Getter
 @SQLRestriction("active <> TRUE ")
 @SQLDelete(sql = "UPDATE car SET active = TRUE WHERE id=?")
-@Entity(name = "car")
+@Table(name = "car")
+@Entity()
 public class CarEntity {
 
     @Id

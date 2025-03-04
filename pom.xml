@@ -45,6 +45,13 @@
             <version>2.1.0</version>
         </dependency>
 
+        <!-- Spring HATEOAS for HATEOAS support -->
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

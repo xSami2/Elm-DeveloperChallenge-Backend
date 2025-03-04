@@ -15,10 +15,6 @@ import java.util.Optional;
 public interface ShowroomRepository extends JpaRepository<ShowroomEntity, String> {
 
 
-
-  @Query("select name from ShowroomEntity")
-  List<String> findAllCarShowroomNames();
-
   Optional<ShowroomEntity> findShowroomEntityByCommercialRegistrationNumber(String id);
   Optional<ShowroomEntity> findShowroomEntityById(String id);
 

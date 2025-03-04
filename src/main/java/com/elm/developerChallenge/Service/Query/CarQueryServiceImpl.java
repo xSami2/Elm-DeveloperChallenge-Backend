@@ -29,7 +29,12 @@ public class CarQueryServiceImpl {
     Page<GetCarResponsesDTO> carDTOPage = carRepository.findAllWithShowroom(pageable);
 
     return ResponseEntity.status(HttpStatus.OK)
-        .body(new API_Responses<>(200, "Successfully retrieved all cars.", carDTOPage));
+        .body(
+                new API_Responses<>(
+                        200,
+                        "Successfully retrieved all cars.",
+                        carDTOPage)
+        );
   }
 
 
@@ -44,7 +49,6 @@ public class CarQueryServiceImpl {
 
 
         return ResponseEntity
-
                 .status(HttpStatus.OK)
                 .body(
                         new API_Responses<>(200 , "GET" , getCarResponsesDTOList)
