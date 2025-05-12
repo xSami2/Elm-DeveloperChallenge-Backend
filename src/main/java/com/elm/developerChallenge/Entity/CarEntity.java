@@ -4,6 +4,7 @@ package com.elm.developerChallenge.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -14,9 +15,10 @@ import java.time.Instant;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
-@SQLRestriction("active <> TRUE ")
+@SQLRestriction("active = TRUE ")
 @SQLDelete(sql = "UPDATE car SET active = TRUE WHERE id=?")
 @Table(name = "car")
 @Entity()

@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.*;
 
 import java.time.Instant;
@@ -20,8 +17,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 @Table(name = "showroom")
-@SQLRestriction("active <> TRUE  ")
+@SQLRestriction("active = TRUE  ")
 @Entity
 public class ShowroomEntity {
 
@@ -56,7 +54,9 @@ public class ShowroomEntity {
     @UpdateTimestamp
     private Instant updated_at;
 
-    private boolean active ;
+    @Column(nullable = false)
+    private boolean active = true;
+
 
 
 
