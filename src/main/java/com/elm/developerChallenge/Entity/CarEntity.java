@@ -2,6 +2,7 @@ package com.elm.developerChallenge.Entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,7 +11,9 @@ import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.UUID;
 
+@AllArgsConstructor
 @Setter
 @Getter
 @SQLRestriction("active <> TRUE ")

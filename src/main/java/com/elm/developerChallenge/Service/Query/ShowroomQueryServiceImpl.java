@@ -1,5 +1,6 @@
 package com.elm.developerChallenge.Service.Query;
 
+import com.elm.developerChallenge.Assembler.ShowroomModelAssembler;
 import com.elm.developerChallenge.DTO.API_Responses;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetAllShowroomResponsesDTO;
 import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +26,11 @@ public class ShowroomQueryServiceImpl {
 
   private final ShowroomRepository showroomRepository;
   private final ShowroomMapper showroomMapper;
+  private final ShowroomModelAssembler showroomModelAssembler;
+  private final PagedResourcesAssembler<GetAllShowroomResponsesDTO> pagedResourcesAssembler;
  // private final List<String> validSortFields = Arrays.asList("id" , "name" , )
 
-  public ResponseEntity<API_Responses<PagedModel<GetAllShowroomResponsesDTO>>> getAllShowroom(int page , int size ) {
+  public ResponseEntity<API_Responses<PagedModel<EntityModel<GetAllShowroomResponsesDTO>>>> getAllShowroom(int page , int size ) {
 
 //    Sort.Direction SortDirectionObject;
 //
@@ -45,7 +50,9 @@ public class ShowroomQueryServiceImpl {
 
     Page<ShowroomEntity> pageableAllShowroomEntity  = showroomRepository.findAll(pageable);
     Page<GetAllShowroomResponsesDTO> allShowroomDTOs = showroomMapper.convertToDTO(pageableAllShowroomEntity);
-    PagedModel<GetAllShowroomResponsesDTO> pagedModel = new PagedModel<>(allShowroomDTOs);
+    PagedModel<EntityModel<GetAllShowroomResponsesDTO>> pagedModel =
+            pagedResourcesAssembler.toModel(allShowroomDTOs, showroomModelAssembler);
+
 
     return ResponseEntity.status(HttpStatus.OK)
         .body(
@@ -57,7 +64,7 @@ public class ShowroomQueryServiceImpl {
         );
   }
 
-  public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroom(String uuid) {
+  public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroomById(String uuid) {
     Optional<ShowroomEntity> optionalCarShowroomEntity =
         showroomRepository.findShowroomEntityById(uuid);
 

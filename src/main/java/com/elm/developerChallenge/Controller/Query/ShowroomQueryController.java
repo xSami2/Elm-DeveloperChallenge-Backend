@@ -7,7 +7,7 @@ import com.elm.developerChallenge.DTO.Respones.Showroom.GetShowroomResponsesDTO;
 import com.elm.developerChallenge.Entity.ShowroomEntity;
 import com.elm.developerChallenge.Service.Query.ShowroomQueryServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class ShowroomQueryController implements IShowroomQueryController {
   private final ShowroomQueryServiceImpl showroomQueryService;
 
     @GetMapping("")
-    public ResponseEntity<API_Responses<PagedModel<GetAllShowroomResponsesDTO>>> getAllShowroom(
+    public ResponseEntity<API_Responses<PagedModel<EntityModel<GetAllShowroomResponsesDTO>>>> getAllShowroom(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
 //            @RequestParam(defaultValue = "ASC") String sortDirection,
@@ -33,8 +33,8 @@ public class ShowroomQueryController implements IShowroomQueryController {
 
 
   @GetMapping("/{id}")
-  public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroom(@PathVariable String id) {
-    return showroomQueryService.getShowroom(id);
+  public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroomById(@PathVariable String id) {
+    return showroomQueryService.getShowroomById(id);
   }
 
 

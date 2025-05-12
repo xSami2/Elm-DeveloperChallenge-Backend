@@ -7,6 +7,7 @@ import com.elm.developerChallenge.Entity.ShowroomEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.domain.Page;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public interface IShowroomQueryController {
                     responseCode = "200"
             )
     )
-    public ResponseEntity<API_Responses<PagedModel<GetAllShowroomResponsesDTO>>> getAllShowroom(
+    public ResponseEntity<API_Responses<PagedModel<EntityModel<GetAllShowroomResponsesDTO>>>> getAllShowroom(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
 //            @RequestParam(defaultValue = "ASC") String sortDirection,
@@ -49,5 +50,5 @@ public interface IShowroomQueryController {
             )
             }
     )
-    public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroom(@PathVariable String id);
+    public ResponseEntity<API_Responses<GetShowroomResponsesDTO>> getShowroomById(@PathVariable String id);
 }
