@@ -1,6 +1,6 @@
 package com.elm.developerChallenge.Repository;
 
-import com.elm.developerChallenge.DTO.Respones.Car.GetCarResponsesDTO;
+import com.elm.developerChallenge.DTO.Respones.Car.GetAllCarResponsesDTO;
 import com.elm.developerChallenge.Entity.CarEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +16,9 @@ public interface CarRepository extends JpaRepository<CarEntity, String> , JpaSpe
     @Query(" SELECT carEntity " +
             "FROM CarEntity carEntity " +
             "JOIN FETCH carEntity.showroom")
-    Page<GetCarResponsesDTO> findAllWithShowroom(Pageable pageable);
+    Page<GetAllCarResponsesDTO> findAllWithShowroom(Pageable pageable);
 
-    Page<GetCarResponsesDTO> findAllByShowroom_Id(String ShowroomId , Pageable page);
+    Page<GetAllCarResponsesDTO> findAllByShowroom_Id(String ShowroomId , Pageable page);
 
 
 

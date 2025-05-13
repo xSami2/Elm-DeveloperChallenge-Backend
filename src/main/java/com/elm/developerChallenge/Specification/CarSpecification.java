@@ -31,8 +31,8 @@ public class CarSpecification {
             }
 
             if (criteria.getCarShowroomId() != null) {
-                Join<Object, Object> carShowroom = root.join("carShowroom", JoinType.LEFT);
-                predicate = builder.and(predicate, builder.equal(carShowroom.get("id"), criteria.getCarShowroomId()));
+                Join<Object, Object> showroom = root.join("showroom", JoinType.LEFT);
+                predicate = builder.and(predicate, builder.equal(showroom.get("id"), criteria.getCarShowroomId()));
             }
 
             return predicate;

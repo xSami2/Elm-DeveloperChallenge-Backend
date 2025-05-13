@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/showroom")
+@RequestMapping("/showrooms")
 public class ShowroomQueryController implements IShowroomQueryController {
 
   private final ShowroomQueryServiceImpl showroomQueryService;

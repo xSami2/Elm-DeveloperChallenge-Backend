@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController()
-@RequestMapping("/showroom")
+@RequestMapping("/showrooms")
 public class ShowroomCommandController implements IShowroomCommandController {
 
     private final ShowroomCommandServiceImpl showroomCommandService;
@@ -31,9 +31,9 @@ public class ShowroomCommandController implements IShowroomCommandController {
         return showroomCommandService.updateShowroom(updateShowroomRequestDTO);
     }
 
-    @DeleteMapping("/{ShowroomID}")
-    public ResponseEntity<API_Responses<String>> deleteShowroom(@PathVariable String ShowroomID){
-        return showroomCommandService.deleteCarShowroom(ShowroomID);
+    @DeleteMapping("/{showroomId}")
+    public ResponseEntity<API_Responses<String>> deleteShowroom(@PathVariable String showroomId){
+        return showroomCommandService.deleteCarShowroom(showroomId);
     }
 
 

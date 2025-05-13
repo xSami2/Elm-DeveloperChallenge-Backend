@@ -55,7 +55,6 @@ public class DatabaseSeed implements CommandLineRunner {
             );
             System.out.println(showroom.toString());
             showroomRepository.save(showroom);
-            System.out.println( showroomRepository.save(showroom));
 
         }
     }

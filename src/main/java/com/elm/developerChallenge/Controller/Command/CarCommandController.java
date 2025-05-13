@@ -9,22 +9,23 @@ import com.elm.developerChallenge.Service.Command.CarCommandServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/car")
+@RequestMapping("/cars")
 @RestController
 public class CarCommandController implements ICarCommandController {
 
     private final CarCommandServiceImpl carCommandService;
 
     @PostMapping()
-    @Override
     public ResponseEntity<API_Responses<SaveCarResponsesDTO>> saveCar(@Valid @RequestBody SaveCarRequestDTO saveCarRequestDTO) {
         return carCommandService.saveCar(saveCarRequestDTO);
+    }
+
+    @DeleteMapping("/{carId}")
+    public ResponseEntity<API_Responses<String>> deleteCar(@PathVariable String carId){
+        return carCommandService.deleteCar(carId);
     }
 
 }

@@ -19,7 +19,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @SQLRestriction("active = TRUE ")
-@SQLDelete(sql = "UPDATE car SET active = TRUE WHERE id=?")
+@SQLDelete(sql = "UPDATE car SET active = FALSE WHERE id=?")
 @Table(name = "car")
 @Entity()
 public class CarEntity {
@@ -50,7 +50,8 @@ public class CarEntity {
     @UpdateTimestamp
     private Instant updated_at;
 
-    private boolean active;
+    @Column(nullable = false)
+    private boolean active = true;
 
 
 

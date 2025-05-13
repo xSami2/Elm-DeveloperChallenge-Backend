@@ -85,25 +85,25 @@ public class ShowroomCommandServiceImpl {
 
 
     }
-    public ResponseEntity<API_Responses<String>> deleteCarShowroom(String carShowroomId) {
-        Optional<ShowroomEntity> optionalCarShowroomEntity  = showroomRepository.findById(carShowroomId);
+    public ResponseEntity<API_Responses<String>> deleteCarShowroom(String showroomId) {
+        Optional<ShowroomEntity> optionalCarShowroomEntity  = showroomRepository.findById(showroomId);
 
         if (optionalCarShowroomEntity.isEmpty()) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body(new API_Responses<>(404, "Could not found Car Showroom With ID : " + carShowroomId, null));
+                    .body(new API_Responses<>(404, "Could not found Car Showroom With ID : " + showroomId, null));
         }
 
 
 
-        showroomRepository.deleteById(carShowroomId);
+        showroomRepository.deleteById(showroomId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(
                         new API_Responses<>(
                                 200,
-                                "Showroom with ID " + carShowroomId + " has been successfully deleted.",
+                                "Showroom with ID " + showroomId + " has been successfully deleted.",
                                 null
                         )
                 );

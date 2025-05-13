@@ -20,6 +20,8 @@ import java.util.UUID;
 @ToString
 @Table(name = "showroom")
 @SQLRestriction("active = TRUE  ")
+@SQLDelete(sql = "UPDATE showroom SET active = FALSE WHERE id=?")
+
 @Entity
 public class ShowroomEntity {
 
